@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Delivery — Practitioner Blueprints for the AI Era</title>
+<meta name="description" content="43 practitioner blueprints across software delivery, AI strategy, ICT PMO, Enterprise PMO, and Target Operating Model. Free. No login.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --void:#06080f;--surface:#09010e;--card:#0d1020;--card-2:#111426;
+  --border:#181d32;--border-2:#1e2440;
+  --ink:#f0f2fa;--mid:#7b82a0;--muted:#383d58;
+  --apex:#6366f1;--apex-2:#818cf8;--apex-d:rgba(99,102,241,0.1);
+  --delivery:#00e5a0;--governance:#6c8fff;--dependency:#ff9f4a;
+  --funding:#d966ff;--people:#f472b6;--architecture:#fb923c;
+  --aivalue:#a78bfa;--metrics:#34d399;--cases:#fbbf24;--decent:#22d3ee;
+  --cio:#0ea5e9;--pmo:#f97316;--epmo:#e11d48;--tom:#0d9488;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--void);color:var(--ink);font-size:14px;line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh}
+
+/* ── TOP NAV ── */
+.topnav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(6,8,15,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;padding:0 32px;gap:0}
+.topnav-logo{font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:800;letter-spacing:-0.02em;color:var(--ink);text-decoration:none;margin-right:32px;white-space:nowrap;display:flex;align-items:center;gap:8px}
+.topnav-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--apex);animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+.topnav-links{display:flex;align-items:center;gap:2px;overflow-x:auto;flex:1}
+.topnav-link{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:8px 14px;border-radius:6px;white-space:nowrap;transition:color .15s,background .15s;border:1px solid transparent}
+.topnav-link:hover{color:var(--ink);background:rgba(255,255,255,0.04)}
+.topnav-link.active{color:var(--apex-2);border-color:rgba(99,102,241,0.3);background:var(--apex-d)}
+.topnav-link[data-wiki="delivery"].active{color:var(--delivery);border-color:rgba(0,229,160,0.25);background:rgba(0,229,160,0.07)}
+.topnav-link[data-wiki="cio"].active{color:var(--cio);border-color:rgba(14,165,233,0.25);background:rgba(14,165,233,0.07)}
+.topnav-link[data-wiki="pmo"].active{color:var(--pmo);border-color:rgba(249,115,22,0.25);background:rgba(249,115,22,0.07)}
+.topnav-link[data-wiki="epmo"].active{color:var(--epmo);border-color:rgba(225,29,72,0.25);background:rgba(225,29,72,0.07)}
+.topnav-link[data-wiki="tom"].active{color:var(--tom);border-color:rgba(13,148,136,0.25);background:rgba(13,148,136,0.07)}
+
+/* ── CONTENT FRAME ── */
+.content-frame{margin-top:56px;min-height:calc(100vh - 56px)}
+.wiki-panel{display:none}.wiki-panel.active{display:block}
+
+/* ── HOME ── */
+.home-hero{padding:80px 48px 64px;position:relative;overflow:hidden;border-bottom:1px solid var(--border)}
+.home-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 20% 50%,rgba(99,102,241,0.07) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 85% 30%,rgba(0,229,160,0.04) 0%,transparent 65%);pointer-events:none}
+.home-grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:52px 52px;opacity:0.3;pointer-events:none}
+.home-content{position:relative;max-width:920px}
+.home-eyebrow{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--apex-2);margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.home-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--apex)}
+.home-h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(36px,5.5vw,68px);font-weight:800;line-height:1.05;letter-spacing:-0.03em;margin-bottom:22px}
+.home-h1 em{font-style:normal;color:var(--apex-2)}
+.home-sub{font-size:17px;font-weight:300;color:var(--mid);max-width:620px;line-height:1.75;margin-bottom:36px}
+.home-stats{display:flex;gap:40px;flex-wrap:wrap;padding-top:36px;border-top:1px solid var(--border)}
+.home-stat-val{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:800;color:var(--ink);letter-spacing:-0.02em;line-height:1;margin-bottom:4px}
+.home-stat-lbl{font-size:12px;color:var(--muted);line-height:1.4}
+
+/* ── WIKI CARDS ── */
+.wiki-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1px;background:var(--border);max-width:1200px;margin:0 auto}
+.wiki-card{background:var(--card);padding:36px 36px 32px;text-decoration:none;display:block;transition:background .15s;cursor:pointer;border:none;text-align:left;position:relative;overflow:hidden}
+.wiki-card:hover{background:var(--card-2)}
+.wiki-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.wiki-card[data-wiki="delivery"]::before{background:var(--delivery)}
+.wiki-card[data-wiki="cio"]::before{background:var(--cio)}
+.wiki-card[data-wiki="pmo"]::before{background:var(--pmo)}
+.wiki-card[data-wiki="epmo"]::before{background:var(--epmo)}
+.wiki-card[data-wiki="tom"]::before{background:var(--tom)}
+.wiki-card-num{font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.wiki-card-icon{font-size:28px;margin-bottom:14px}
+.wiki-card-title{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;letter-spacing:-0.01em;color:var(--ink);margin-bottom:8px;line-height:1.2}
+.wiki-card-sub{font-size:12px;color:var(--mid);line-height:1.65;margin-bottom:18px}
+.wiki-card-count{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;color:var(--muted)}
+.wiki-card-arrow{position:absolute;bottom:32px;right:32px;font-size:18px;color:var(--muted);transition:color .15s,right .15s}
+.wiki-card:hover .wiki-card-arrow{right:28px;color:var(--apex-2)}
+
+/* ── SUB-NAV (inside each wiki) ── */
+.subnav{background:var(--surface);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;position:sticky;top:56px;z-index:99}
+.sub-btn{flex:1;min-width:120px;padding:12px 14px;font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;text-align:center;transition:color .15s,border-color .15s}
+.sub-btn:hover{color:var(--ink)}
+
+/* ── SHARED WIKI STYLES ── */
+.wiki-body{max-width:1060px;margin:0 auto;padding:0 32px}
+.wsection{padding:48px 0 0}.wsection:last-child{padding-bottom:64px}
+.wlabel{font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;margin-bottom:6px}
+.wtitle{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;letter-spacing:-0.01em;margin-bottom:20px;line-height:1.2}
+.wintro{font-size:14px;color:var(--mid);max-width:700px;line-height:1.8;margin-bottom:32px}
+.wpanel{display:none}.wpanel.active{display:block}
+.wg3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:32px}
+.wg2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin-bottom:32px}
+.wcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 24px;transition:background .15s}
+.wcard:hover{background:var(--card-2)}
+.wcard h3{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;margin-bottom:8px}
+.wcard p{font-size:12px;color:var(--mid);line-height:1.7}
+.wcard ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.wcard li{font-size:12px;color:var(--mid);padding-left:14px;position:relative;line-height:1.55}
+.wcard li::before{content:'›';position:absolute;left:0}
+.wcard li strong{color:var(--ink);font-weight:600}
+.wstats{display:flex;gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px;flex-wrap:wrap}
+.wstat{flex:1;background:var(--card);padding:18px 16px;text-align:center;min-width:110px}
+.wstat-val{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:800;line-height:1;margin-bottom:5px}
+.wstat-lbl{font-size:11px;color:var(--mid);line-height:1.4}
+.wtable{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.wtable th{background:var(--surface);color:var(--muted);font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;padding:11px 16px;text-align:left}
+.wtable td{padding:12px 16px;font-size:12px;color:var(--mid);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6}
+.wtable tr:last-child td{border-bottom:none}
+.wtable tr:hover td{background:var(--card-2)}
+.td-h{font-weight:600;color:var(--ink);display:block;margin-bottom:2px}
+.wcallout{border-radius:10px;padding:20px 24px;margin-bottom:32px}
+.wcallout-head{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.wcallout p{font-size:13px;line-height:1.75;margin-bottom:8px}
+.wcallout p:last-child{margin-bottom:0}
+.wcallout strong{font-weight:600}
+.wmatrix{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.wmx{background:var(--card);padding:20px 22px}
+.wmx h4{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;margin-bottom:10px}
+.wmx ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.wmx li{font-size:12px;color:var(--mid);padding-left:14px;position:relative;line-height:1.5}
+.wmx li::before{content:'›';position:absolute;left:0}
+.wchecklist{display:flex;flex-direction:column;gap:8px;margin-bottom:32px}
+.wcl{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px}
+.wcl input[type=checkbox]{margin-top:2px;flex-shrink:0;width:15px;height:15px}
+.wcl label{font-size:12px;color:var(--mid);line-height:1.6;cursor:pointer}
+.wcl label strong{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
+.wflow{display:flex;align-items:center;overflow-x:auto;margin-bottom:32px;padding-bottom:8px}
+.wfn{flex-shrink:0;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;text-align:center;min-width:100px}
+.wfn-icon{font-size:16px;margin-bottom:4px}
+.wfn-label{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;color:var(--ink)}
+.wfn-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.wfa{color:var(--muted);font-size:16px;padding:0 8px;flex-shrink:0}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;width:fit-content;margin-bottom:4px}
+.chip::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+.chip.async{background:rgba(108,143,255,0.12);color:#6c8fff;border:1px solid rgba(108,143,255,0.3)}
+.chip.sync{background:rgba(0,229,160,0.1);color:var(--delivery);border:1px solid rgba(0,229,160,0.3)}
+.chip.gate{background:rgba(255,159,74,0.1);color:var(--dependency);border:1px solid rgba(255,159,74,0.3)}
+.chip.ai{background:rgba(217,102,255,0.1);color:var(--aivalue);border:1px solid rgba(217,102,255,0.3)}
+.whr{border:none;border-top:1px solid var(--border);margin:40px 0}
+
+/* ── FOOTER ── */
+.site-footer{background:var(--surface);border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:11px;color:var(--muted);margin-top:0}
+.site-footer strong{color:var(--mid)}
+
+@media(max-width:768px){
+  .topnav{padding:0 16px}
+  .home-hero{padding:64px 20px 48px}
+  .wiki-body{padding:0 16px}
+  .wmatrix,.wg2{grid-template-columns:1fr}
+  .site-footer{flex-direction:column;text-align:center;padding:20px}
+  .sub-btn{font-size:8px;min-width:90px;padding:10px 10px}
+}
+
+
+/* ─ Delivery Signal sub-nav colours ─ */
+.wiki-panel[data-wiki="delivery"] .sub-btn.active {color:var(--delivery);border-bottom-color:var(--delivery)}
+/* CIO */
+.wiki-panel[data-wiki="cio"] .sub-btn.active {color:var(--cio);border-bottom-color:var(--cio)}
+/* PMO */
+.wiki-panel[data-wiki="pmo"] .sub-btn.active {color:var(--pmo);border-bottom-color:var(--pmo)}
+/* EPMO */
+.wiki-panel[data-wiki="epmo"] .sub-btn.active {color:var(--epmo);border-bottom-color:var(--epmo)}
+/* TOM */
+.wiki-panel[data-wiki="tom"] .sub-btn.active {color:var(--tom);border-bottom-color:var(--tom)}
+
+/* Keep original wiki variable colours working */
+:root {
+  --b1:#f97316;--b2:#3b82f6;--b3:#a855f7;--b4:#10b981;
+  --b5:#f59e0b;--b6:#ec4899;--b7:#06b6d4;--b8:#84cc16;
+  --a-delivery:#00e5a0;--a-governance:#6c8fff;--a-dependency:#ff9f4a;--a-funding:#d966ff;
+  --wool-green:#00e5a0;--wool-bg:rgba(0,229,160,0.08);
+  --teal:#0d9488;--blue:#3b82f6;--violet:#7c3aed;--amber:#d97706;
+  --rose:#e11d48;--green:#059669;--cyan:#0891b2;--lime:#65a30d;
+  --teal-d:rgba(13,148,136,0.08);--blue-d:rgba(59,130,246,0.08);
+  --violet-d:rgba(124,58,237,0.08);--amber-d:rgba(217,119,6,0.08);
+  --ink-dim:#8a8f9e;--ink-mid:#3a3d4a;--ink-soft:#6b7080;
+  --bg:#06080f;--bg-card:#0d1020;--rule:#181d32;
+}
+
+/* Legacy class aliases so original wiki HTML renders correctly */
+.container,.wrap {max-width:1060px;margin:0 auto}
+.section {padding:48px 0 0}.section:last-child{padding-bottom:64px}
+.s-label{font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:6px}
+.s-title{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;letter-spacing:-.01em;margin-bottom:20px;line-height:1.2}
+.s-intro{font-size:14px;color:var(--mid);max-width:700px;line-height:1.8;margin-bottom:32px}
+.grid-3,.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:32px}
+.grid-2,.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:16px;margin-bottom:32px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px 24px;transition:background .15s}
+.card:hover{background:var(--card-2)}
+.card-icon{font-size:22px;margin-bottom:12px}
+.card h3{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;margin-bottom:8px}
+.card p{font-size:12px;color:var(--mid);line-height:1.7}
+.card ul{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:5px}
+.card li{font-size:12px;color:var(--mid);padding-left:14px;position:relative;line-height:1.55}
+.card li::before{content:'›';position:absolute;left:0}
+.card li strong{color:var(--ink);font-weight:600}
+.signal-strip,.stats,.wstats{display:flex;gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px;flex-wrap:wrap}
+.signal-cell,.stat,.wstat{flex:1;background:var(--card);padding:18px 16px;text-align:center;min-width:110px}
+.signal-value,.stat-val,.wstat-val{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:800;line-height:1;margin-bottom:5px}
+.signal-label,.stat-lbl,.wstat-lbl{font-size:11px;color:var(--mid);line-height:1.4}
+.bp-table,.wtable{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.bp-table th,.wtable th{background:var(--surface);color:var(--muted);font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:11px 16px;text-align:left}
+.bp-table td,.wtable td{padding:12px 16px;font-size:12px;color:var(--mid);border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6}
+.bp-table tr:last-child td,.wtable tr:last-child td{border-bottom:none}
+.bp-table tr:hover td,.wtable tr:hover td{background:var(--card-2)}
+.artifact-name,.td-primary,.td-h{font-weight:600;color:var(--ink);display:block;margin-bottom:2px}
+.callout,.wcallout{border-radius:10px;padding:20px 24px;margin-bottom:32px}
+.callout-head,.wcallout-head{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.callout p,.wcallout p{font-size:13px;line-height:1.75;margin-bottom:8px}
+.callout p:last-child,.wcallout p:last-child{margin-bottom:0}
+.callout strong,.wcallout strong{font-weight:600}
+.matrix,.wmatrix{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.matrix-cell,.mx-cell,.wmx{background:var(--card);padding:20px 22px}
+.matrix-cell h4,.mx-cell h4,.wmx h4{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;margin-bottom:10px}
+.matrix-cell ul,.mx-cell ul,.wmx ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.matrix-cell li,.mx-cell li,.wmx li{font-size:12px;color:var(--mid);padding-left:14px;position:relative;line-height:1.5}
+.matrix-cell li::before,.mx-cell li::before,.wmx li::before{content:'›';position:absolute;left:0}
+.checklist,.wchecklist{display:flex;flex-direction:column;gap:8px;margin-bottom:32px}
+.check-item,.cl-item,.wcl{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px}
+.check-item input,.cl-item input,.wcl input{margin-top:2px;flex-shrink:0;width:15px;height:15px}
+.check-item label,.cl-item label,.wcl label{font-size:12px;color:var(--mid);line-height:1.6;cursor:pointer}
+.check-item label strong,.cl-item label strong,.wcl label strong{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
+.flow,.wflow{display:flex;align-items:center;overflow-x:auto;margin-bottom:32px;padding-bottom:8px}
+.fn,.wfn{flex-shrink:0;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;text-align:center;min-width:100px}
+.fn-icon,.wfn-icon{font-size:16px;margin-bottom:4px}
+.fn-label,.wfn-label{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;color:var(--ink)}
+.fn-sub,.wfn-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.fa,.wfa{color:var(--muted);font-size:16px;padding:0 8px;flex-shrink:0}
+.divider,.whr,hr.div{border:none;border-top:1px solid var(--border);margin:40px 0}
+.role-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:24px}
+.role-card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.role-card-header{padding:14px 16px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.role-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.role-card-header h3{font-size:13px;font-weight:600;color:var(--ink)}
+.role-card-header p{font-size:11px;color:var(--mid);margin-top:1px}
+.role-card-body{padding:14px 16px}
+.role-card-body ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.role-card-body li{font-size:12px;color:var(--mid);padding-left:14px;position:relative;line-height:1.5}
+.role-card-body li::before{content:'→';position:absolute;left:0;color:var(--mid);font-size:10px;top:2px}
+.artifact-table{width:100%;border-collapse:collapse;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:24px}
+.artifact-table th{background:var(--surface);color:var(--muted);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 14px;text-align:left}
+.artifact-table td{padding:11px 14px;font-size:12px;color:var(--mid);border-bottom:1px solid var(--border);vertical-align:top}
+.artifact-table tr:last-child td{border-bottom:none}
+.artifact-table tr:nth-child(even) td{background:rgba(255,255,255,0.01)}
+.artifact-tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;margin-top:3px}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:24px}
+.metric-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.m-value{font-family:'Space Grotesk',sans-serif;font-size:28px;color:var(--ink);line-height:1;margin-bottom:4px}
+.m-label{font-size:11px;color:var(--mid);line-height:1.4}
+.m-icon{font-size:18px;margin-bottom:6px}
+.principle-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.principle-cell{background:var(--card);padding:20px}
+.p-icon{font-size:22px;margin-bottom:8px}
+.p-title{font-weight:600;font-size:13px;color:var(--ink);margin-bottom:4px}
+.p-desc{font-size:12px;color:var(--mid);line-height:1.5}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mid)}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.cadence-grid{display:grid;grid-template-columns:120px 1fr;gap:0;border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:24px}
+.cadence-header{background:var(--surface);color:#a0aab8;padding:12px 16px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center}
+.cadence-header.span2{grid-column:1/-1}
+.cadence-week-label{background:var(--surface);color:#a0aab8;padding:14px 16px;font-size:11px;font-weight:600;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:2px}
+.cadence-week-label span{font-size:9px;font-weight:400;color:var(--muted)}
+.cadence-events{background:var(--card);padding:14px 16px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
+.event-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:20px;font-size:11px;font-weight:500;width:fit-content}
+.event-chip::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
+.event-chip.sync{background:rgba(108,143,255,0.12);color:#6c8fff;border:1px solid rgba(108,143,255,0.3)}
+.event-chip.async{background:rgba(124,58,237,0.12);color:#a78bfa;border:1px solid rgba(124,58,237,0.3)}
+.event-chip.milestone{background:rgba(0,229,160,0.1);color:var(--delivery);border:1px solid rgba(0,229,160,0.3)}
+.event-chip.checkpoint{background:rgba(217,119,6,0.1);color:var(--dependency);border:1px solid rgba(217,119,6,0.3)}
+.event-chip.ai{background:rgba(217,102,255,0.1);color:var(--funding);border:1px solid rgba(217,102,255,0.3)}
+.event-note{font-size:11px;color:var(--muted);padding-left:4px}
+.timeline{display:flex;flex-direction:column;gap:0;margin-bottom:32px}
+.tl-row{display:grid;grid-template-columns:130px 1fr;gap:0;border:1px solid var(--border);border-bottom:none}
+.tl-row:first-child{border-radius:10px 10px 0 0}
+.tl-row:last-child{border-bottom:1px solid var(--border);border-radius:0 0 10px 10px}
+.tl-label{background:var(--surface);padding:16px 18px;border-right:1px solid var(--border);display:flex;flex-direction:column;justify-content:center}
+.tl-phase{font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;letter-spacing:.05em}
+.tl-week{font-size:10px;color:var(--muted);margin-top:2px}
+.tl-events{background:var(--card);padding:14px 18px;display:flex;flex-direction:column;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500;width:fit-content;margin-bottom:2px}
+.chip::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0}
+.chip-note{font-size:11px;color:var(--muted);padding-left:2px}
+.risk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--border);border-radius:10px;overflow:hidden;margin-bottom:32px}
+.risk-cell{background:var(--card);padding:18px 20px}
+.risk-tier{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.risk-cell h4{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;margin-bottom:6px}
+.risk-cell p{font-size:12px;color:var(--mid);line-height:1.6;margin-bottom:8px}
+.risk-cell ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+.risk-cell li{font-size:11px;color:var(--mid);padding-left:12px;position:relative}
+.risk-cell li::before{content:'·';position:absolute;left:0}
+.tom-diagram{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:28px;margin-bottom:32px}
+.tom-row{display:grid;gap:12px;margin-bottom:12px}.tom-row:last-child{margin-bottom:0}
+.tom-row.r1{grid-template-columns:1fr}.tom-row.r2{grid-template-columns:1fr 1fr}
+.tom-row.r3{grid-template-columns:1fr 1fr 1fr}.tom-row.r4{grid-template-columns:1fr 1fr 1fr 1fr}
+.tom-cell{border-radius:8px;padding:14px 16px;text-align:center}
+.tom-cell h4{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;margin-bottom:4px}
+.tom-cell p{font-size:10px;color:rgba(255,255,255,0.65);line-height:1.4}
+.tom-label{font-family:'Space Grotesk',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;padding-left:4px}
+.layer-strategy{background:linear-gradient(135deg,rgba(13,148,136,.25),rgba(13,148,136,.12));border:1px solid rgba(13,148,136,.35)}
+.layer-product{background:linear-gradient(135deg,rgba(59,130,246,.2),rgba(59,130,246,.1));border:1px solid rgba(59,130,246,.3)}
+.layer-platform{background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(124,58,237,.1));border:1px solid rgba(124,58,237,.3)}
+.layer-enable{background:linear-gradient(135deg,rgba(217,119,6,.2),rgba(217,119,6,.1));border:1px solid rgba(217,119,6,.3)}
+.layer-ops{background:linear-gradient(135deg,rgba(5,150,105,.2),rgba(5,150,105,.1));border:1px solid rgba(5,150,105,.3)}
+.layer-found{background:linear-gradient(135deg,rgba(100,100,130,.2),rgba(100,100,130,.1));border:1px solid rgba(100,100,130,.3)}
+.masthead{display:none}
+.header{display:none}
+.footer{display:none}
+.site-footer{display:block}
+
+@media(max-width:640px){
+  .matrix,.wmatrix,.tom-row.r2,.tom-row.r3,.tom-row.r4{grid-template-columns:1fr}
+  .cadence-grid{grid-template-columns:90px 1fr}
+  .tl-row{grid-template-columns:90px 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav">
+  <a href="#" class="topnav-logo" onclick="showHome(event)">
+    <span class="topnav-logo-dot"></span>
+    Apex Delivery
+  </a>
+  <div class="topnav-links">
+    <a href="#" class="topnav-link active" data-wiki="home" onclick="showHome(event)">Home</a>
+    <a href="#" class="topnav-link" data-wiki="delivery" onclick="showWiki(event,'delivery')">Delivery Signal</a>
+    <a href="#" class="topnav-link" data-wiki="cio" onclick="showWiki(event,'cio')">CIO AI</a>
+    <a href="#" class="topnav-link" data-wiki="pmo" onclick="showWiki(event,'pmo')">ICT PMO</a>
+    <a href="#" class="topnav-link" data-wiki="epmo" onclick="showWiki(event,'epmo')">Enterprise PMO</a>
+    <a href="#" class="topnav-link" data-wiki="tom" onclick="showWiki(event,'tom')">ICT TOM</a>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<div class="content-frame">
+
+<!-- HOME -->
+<div class="wiki-panel active" id="wiki-home">
+  <div class="home-hero">
+    <div class="home-bg"></div>
+    <div class="home-grid-bg"></div>
+    <div class="home-content">
+      <div class="home-eyebrow">Practitioner Reference · July 2026</div>
+      <h1 class="home-h1">The practitioner's edge<br>for the <em>AI-era</em></h1>
+      <p class="home-sub">43 blueprints across software delivery, AI strategy, ICT PMO, Enterprise PMO, and Target Operating Model. Built for delivery leaders, CIOs, and PMO executives operating at the frontier. Free. No login. No paywall.</p>
+      <div class="home-stats">
+        <div><div class="home-stat-val">43</div><div class="home-stat-lbl">Practitioner blueprints</div></div>
+        <div><div class="home-stat-val">5</div><div class="home-stat-lbl">Distinct reference wikis</div></div>
+        <div><div class="home-stat-val">Jun 26</div><div class="home-stat-lbl">AI-Native SAFe synthesised<br>within 3 days of release</div></div>
+        <div><div class="home-stat-val">DORA 5</div><div class="home-stat-lbl">2025 metrics model fully covered</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wiki-grid">
+    <button class="wiki-card" data-wiki="delivery" onclick="showWiki(event,'delivery')">
+      <div class="wiki-card-num">Wiki 01</div>
+      <div class="wiki-card-icon">🚀</div>
+      <div class="wiki-card-title">Delivery Signal</div>
+      <div class="wiki-card-sub">10 blueprints synthesising AI-Native SAFe, DORA 2025, Platform Engineering, Team Topologies, and deep case studies from Spotify, ING, and Netflix. Built for Scaled Agile practitioners.</div>
+      <div class="wiki-card-count">10 blueprints · Delivery · Governance · Dependency · Funding · People · Architecture · AI Value · Metrics · Case Studies · Decentralised</div>
+      <div class="wiki-card-arrow">→</div>
+    </button>
+
+    <button class="wiki-card" data-wiki="cio" onclick="showWiki(event,'cio')">
+      <div class="wiki-card-num">Wiki 02</div>
+      <div class="wiki-card-icon">🤖</div>
+      <div class="wiki-card-title">CIO AI Blueprints</div>
+      <div class="wiki-card-sub">8 blueprints covering enterprise AI strategy, governance, assurance, implementation, operating model, investment, talent, and risk & regulatory. Built for CIOs moving from pilots to enterprise-grade AI.</div>
+      <div class="wiki-card-count">8 blueprints · Strategy · Governance · Assurance · Implementation · Operating Model · Investment · Talent · Risk & Regulatory</div>
+      <div class="wiki-card-arrow">→</div>
+    </button>
+
+    <button class="wiki-card" data-wiki="pmo" onclick="showWiki(event,'pmo')">
+      <div class="wiki-card-num">Wiki 03</div>
+      <div class="wiki-card-icon">📋</div>
+      <div class="wiki-card-title">ICT PMO Blueprints</div>
+      <div class="wiki-card-sub">8 blueprints for the ICT PMO — portfolio management, governance, resource & capacity, benefits realisation, AI-augmented PMO, operating model, reporting & metrics, and stakeholder management.</div>
+      <div class="wiki-card-count">8 blueprints · Portfolio · Governance · Resource & Capacity · Benefits · AI-Augmented · Operating Model · Metrics · Stakeholders</div>
+      <div class="wiki-card-arrow">→</div>
+    </button>
+
+    <button class="wiki-card" data-wiki="epmo" onclick="showWiki(event,'epmo')">
+      <div class="wiki-card-num">Wiki 04</div>
+      <div class="wiki-card-icon">🏛️</div>
+      <div class="wiki-card-title">Enterprise PMO Blueprints</div>
+      <div class="wiki-card-sub">9 blueprints for the EPMO — strategic portfolio, investment governance, dependency & sequencing, enterprise funding, benefits realisation, change portfolio, AI-augmented EPMO, maturity, and operating model.</div>
+      <div class="wiki-card-count">9 blueprints · Strategic Portfolio · Investment · Dependencies · Funding · Benefits · Change · AI · Maturity · Operating Model</div>
+      <div class="wiki-card-arrow">→</div>
+    </button>
+
+    <button class="wiki-card" data-wiki="tom" onclick="showWiki(event,'tom')">
+      <div class="wiki-card-num">Wiki 05</div>
+      <div class="wiki-card-icon">🗺️</div>
+      <div class="wiki-card-title">ICT Target Operating Model</div>
+      <div class="wiki-card-sub">8 sections defining the AI-native ICT TOM for a 200–500 person group on the product/squad model — structure, team topology, governance, people & skills, technology & data, metrics, and roadmap.</div>
+      <div class="wiki-card-count">8 sections · Overview · Structure · Team Model · Governance · People & Skills · Technology & Data · Metrics · Roadmap</div>
+      <div class="wiki-card-arrow">→</div>
+    </button>
+  </div>
+
+  <div class="site-footer">
+    <strong>Apex Delivery</strong> — Practitioner blueprints for the AI era · 2026
+    <span>Sources: AI-Native SAFe · DORA 2025 · Gartner · McKinsey · MIT CISR · PMI · Team Topologies · Platform Engineering research</span>
+  </div>
+</div>
+
+<!-- DELIVERY SIGNAL WIKI -->
+<div class="wiki-panel" id="wiki-delivery" data-wiki="delivery">
+  <div class="subnav"><button class="sub-btn active" data-panel="delivery">01 · Delivery</button>
+  <button class="sub-btn" data-panel="governance">02 · Governance</button>
+  <button class="sub-btn" data-panel="dependency">03 · Dependency</button>
+  <button class="sub-btn" data-panel="funding">04 · Funding</button>
+  <button class="sub-btn" data-panel="people">05 · People</button>
+  <button class="sub-btn" data-panel="architecture">06 · Architecture</button>
+  <button class="sub-btn" data-panel="aivalue">07 · AI Value</button>
+  <button class="sub-btn" data-panel="metrics">08 · Metrics</button>
+  <button class="sub-btn" data-panel="casestudies">09 · Case Studies</button>
+  <button class="sub-btn" data-panel="decentralised">10 · Decentralised</button></div>
+  
+<div class="wpanel active" id="ds-panel-delivery">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--a-delivery)">Blueprint 01</div>
+    <div class="s-title">Delivery Blueprint</div>
+    <p class="s-intro">
+      The cutting edge of software delivery in 2026 is the convergence of three forces: <strong>Platform Engineering</strong> as organisational infrastructure, <strong>AI-Native SAFe</strong> as the scaled coordination model, and <strong>DORA 2025</strong> as the measurement language. For an SPC, mastering this convergence is the authority differentiator.
+    </p>
+  </div>
+
+  <!-- SIGNAL NUMBERS -->
+  <div class="section">
+    <div class="s-label" style="color:var(--a-delivery)">Current State · 2026 Signals</div>
+    <div class="signal-strip">
+      <div class="signal-cell">
+        <div class="signal-value" style="color:var(--a-delivery)">80%</div>
+        <div class="signal-label">Large orgs with platform teams by 2026 (Gartner)
+</div></div>
+<div class="wpanel" id="ds-panel-governance">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--a-governance)">Blueprint 02</div>
+    <div class="s-title">Governance Blueprint</div>
+    <p class="s-intro">
+      Governance in the AI-Native SAFe era is not about oversight ceremonies — it is about creating the structural conditions for <strong>fast, safe decision-making at every level</strong>. The SPC's role shifts from framework enforcer to governance architect.
+    </p>
+  </div>
+
+  <!-- GOVERNANCE LAYERS -->
+  <div class="section">
+    <div class="s-label" style="color:var(--a-governance)">Structure</div>
+    <div class="s-title">Three-layer governance architecture</div>
+    <div class="grid-3">
+      <div class="card" style="border-top:2px solid var(--a-funding)">
+        <div class="card-icon">🏛️</div>
+        <h3>Portfolio Layer</h3>
+        <p>Lean Portfolio Management (LPM). Connects strategy to execution. Governs budgets, value streams, and strategic themes.</p>
+        <ul>
+          <li>Portfolio Kanban: strategy → epic → feature flow</li>
+          <li>WSJF prioritisation at epic level</li>
+          <li>Participatory budgeting — not annual project approval</li>
+          <li>AI: portfolio-level delivery forecast and risk scan</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a-governance)">
+        <div class="card-icon">🚂</div>
+        <h3>Programme Layer</h3>
+        <p>ART / Tribe level. Orchestrates cross-team delivery within a PI cadence. RTE / SADL as primary governor.</p>
+        <ul>
+          <li>PI Planning as the synchronisation heartbeat</li>
+          <li>ART Sync: 15-min weekly (not a status meeting)</li>
+          <li>System Demo: bi-weekly integrated increment review</li>
+          <li>I&amp;A: PI-level learning and continuous improvement</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--a-delivery)">
+        <div class="card-icon">⚡</div>
+        <h3>Team Layer</h3>
+        <p>Agile Team / Squad. Self-governing within guardrails set by the programme. Daily cadence, sprint review, retrospective.</p>
+        <ul>
+          <li>Definition of Done as the team's quality contract</li>
+          <li>Team Kanban: in-flight WIP limit governance</li>
+          <li>Built-in quality: test automation, pair review standards</li>
+          <li>AI: auto-flagging of stale in-progress items</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="ds-panel-dependency">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--a-dependency)">Blueprint 03</div>
+    <div class="s-title">Dependency Blueprint</div>
+    <p class="s-intro">
+      Dependencies are the primary cause of PI predictability failure. At scale, they are invisible until they become blockers. The SADL / RTE's most valuable capability is <strong>making dependencies visible before they become risks</strong> — then resolving or routing them at the right layer.
+    </p>
+  </div>
+
+  <!-- DEPENDENCY TAXONOMY -->
+  <div class="section">
+    <div class="s-label" style="color:var(--a-dependency)">Classification</div>
+    <div class="s-title">Four dependency types — and how to handle each</div>
+    <div class="grid-2">
+      <div class="card" style="border-left:3px solid var(--a-delivery)">
+        <div class="card-icon">🔗</div>
+        <h3>Team-to-Team (within ART)</h3>
+        <p>Most common. Squad A needs Squad B's API before they can complete their feature. Managed at programme level during PI Planning and weekly ART Sync.</p>
+        <ul>
+          <li>Identify at BRP: feature dependency threads visible on the board</li>
+          <li>Resolve in-PI: ART Sync + direct team-to-team negotiation</li>
+          <li>Escalate to: RTE / SADL if not resolved within one sprint</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--a-governance)">
+        <div class="card-icon">🌉</div>
+        <h3>ART-to-ART (cross-Tribe)</h3>
+        <p>Highest risk. Dependency on another ART's PI commitments. These must be negotiated before BRP — not discovered during the event.</p>
+        <ul>
+          <li>Identify at: Pre-PI dependency negotiation (Week −1)</li>
+          <li>Resolve via: Cross-ART dependency map owned by SADL</li>
+          <li>Escalate to: LPM / Portfolio if no resolution possible within PI</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--a-dependency)">
+        <div class="card-icon">🏭</div>
+        <h3>Platform Dependencies</h3>
+        <p>Stream-aligned teams dependent on Platform team capabilities (new API, IDP feature, infrastructure change). Must be on the Platform ART's PI plan.</p>
+        <ul>
+          <li>Identify at: Feature readiness card — platform dependencies flagged</li>
+          <li>Resolve via: Platform ART PI commitment or enabler story</li>
+          <li>Risk: Platform team as bottleneck — this is an IDP maturity signal</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--a-funding)">
+        <div class="card-icon">🤝</div>
+        <h3>External / Partner</h3>
+        <p>Third-party vendors, commercial partners, regulatory bodies. Outside the ART's control. Must be risk-flagged and have contingency planned in PI objectives.</p>
+        <ul>
+          <li>Map: Commercial dependency register (SADL-owned)</li>
+          <li>Manage: Weekly written partner status digest</li>
+          <li>Protect PI: Never make a PI objective dependent on an unconfirmed external commitment</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="ds-panel-funding">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--a-funding)">Blueprint 04</div>
+    <div class="s-title">Funding Blueprint</div>
+    <p class="s-intro">
+      Lean Portfolio Management (LPM) is the SPC's highest-leverage consulting surface. Most organisations are still funding projects, not products. The shift to <strong>value stream budgeting</strong> is where SPC advice creates executive-level impact — and where AI-Native SAFe now provides explicit governance support.
+    </p>
+  </div>
+
+  <!-- THE SHIFT -->
+  <div class="section">
+    <div class="s-label" style="color:var(--a-funding)">The Core Problem</div>
+    <div class="s-title">Project funding vs. value stream funding</div>
+    <div class="matrix">
+      <div class="matrix-cell">
+        <h4 style="color:#ff5555">Traditional Project Funding</h4>
+        <ul>
+          <li>Annual budget cycle — decisions made 12 months ahead</li>
+          <li>Funding tied to project scope — change is expensive</li>
+          <li>Output accountability: "Did we deliver the scope?"</li>
+          <li>Teams disbanded at project close — knowledge destroyed</li>
+          <li>Finance as gatekeeper — every change needs a business case</li>
+          <li>AI investments as separate budget lines — siloed from product</li>
+        </ul>
+      </div>
+      <div class="matrix-cell">
+        <h4 style="color:var(--a-funding)">Lean Portfolio / Value Stream Funding</h4>
+        <ul>
+          <li>Continuous investment in stable value streams</li>
+          <li>Budget guardrails replace fixed scope — ARTs flex within them</li>
+          <li>Outcome accountability: "Did we move the measure?"</li>
+          <li>Long-lived teams — capability compounds over time</li>
+          <li>Finance as partner — participatory budgeting at PI boundary</li>
+          <li>AI investment embedded in value stream budget — not a separate ask</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="ds-panel-people">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:#f472b6">Blueprint 05</div>
+    <div class="s-title">People Blueprint</div>
+    <p class="s-intro">
+      The 2026 talent landscape has been structurally disrupted. AI skills command a 56% compensation premium (PwC). Skills gaps are now the primary barrier to business execution — not funding, not tools. For an SPC, the people dimension is where transformation succeeds or collapses. Ceremony redesign means nothing if the humans inside it can't operate at the pace AI now enables.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:#f472b6">Structural Shift</div>
+    <div class="s-title">The workforce has fundamentally changed</div>
+    <div class="signal-strip">
+      <div class="signal-cell">
+        <div class="signal-value" style="color:#f472b6">56%</div>
+        <div class="signal-label">Pay premium for engineers with advanced AI skills (PwC 2026)
+</div></div>
+<div class="wpanel" id="ds-panel-architecture">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:#fb923c">Blueprint 06</div>
+    <div class="s-title">Architecture Blueprint</div>
+    <p class="s-intro">
+      Architecture is the SPC's most powerful tool for reducing dependency surface area permanently. Every team coupling problem, every PI planning blocker, every cross-ART negotiation is ultimately an architectural symptom. The SPC who understands domain boundaries, communication patterns, and the current architecture decision landscape operates at a level above the coordination layer.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:#fb923c">Pattern Landscape 2026</div>
+    <div class="s-title">Seven enterprise architecture patterns — when each applies</div>
+    <table class="bp-table">
+      <thead>
+        <tr><th>Pattern</th><th>Best fit</th><th>Key trade-off</th><th>SAFe / Team Topologies alignment</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="td-primary">Modular Monolith</span>Single deployable, logical modules, clear boundaries</td>
+          <td>Small–medium teams, single domain, early-stage product</td>
+          <td>Simpler ops; harder to scale teams independently</td>
+          <td>One stream-aligned team. No platform team needed yet.</td>
+        </tr>
+        <tr>
+          <td><span class="td-primary">Microservices</span>Independently deployable services, domain-bounded</td>
+          <td>50+ engineers, multiple autonomous teams, clear domain boundaries</td>
+          <td>Team autonomy; multiplies observability complexity significantly</td>
+          <td>One service ≈ one team. Enables true Team Topologies stream alignment.</td>
+        </tr>
+        <tr>
+          <td><span class="td-primary">Event-Driven Architecture</span>Async event streams, producers/consumers decoupled</td>
+          <td>High-volume, real-time, loose coupling between services required</td>
+          <td>Throughput and resilience; debugging across event chains is hard</td>
+          <td>Reduces team-to-team synchronous dependency. Ideal for distributed ARTs.</td>
+        </tr>
+        <tr>
+          <td><span class="td-primary">Domain-Driven Design (DDD)</span>Bounded contexts, ubiquitous language, context maps</td>
+          <td>Complex business domains with conflicting terminology across teams</td>
+          <td>Architectural clarity; significant upfront modelling investment</td>
+          <td>Bounded context = ART boundary candidate. Reduces cross-ART coupling structurally.</td>
+        </tr>
+        <tr>
+          <td><span class="td-primary">API-First</span>Contract-first design; interfaces defined before implementation</td>
+          <td>Integration-heavy systems, partner ecosystems, multi-channel</td>
+          <td>Parallel development; contract versioning complexity at scale</td>
+          <td>Enables teams to work in parallel. Reduces dependency wait time in PI.</td>
+        </tr>
+        <tr>
+          <td><span class="td-primary">Serverless</span>Function-level execution; infrastructure abstracted by provider</td>
+          <td>Variable workloads, event-triggered processing, cost-sensitive</td>
+          <td>Elastic cost scaling; cold start latency and vendor lock-in risk</td>
+          <td>Reduces platform team burden for specific workloads. FinOps-friendly.</td>
+        </tr>
+        <tr>
+          <td><span class="td-primary">Strangler Fig Migration</span>Incremental replacement of monolith functionality</td>
+          <td>Legacy modernisation — migrate without big-bang rewrite</td>
+          <td>Risk-managed migration; sustained investment over multiple PIs</td>
+          <td>Maps directly to SAFe enabler epics. Classic SADL multi-PI dependency management case.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:#fb923c">Event-Driven Deep Dive</div>
+    <div class="s-title">EDA — the SPC must understand this at depth</div>
+    <p class="s-intro">Event-Driven Architecture is the most consequential pattern for reducing cross-team dependencies at scale. It deserves SPC attention beyond awareness level.</p>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Core EDA Patterns</h3>
+        <ul>
+          <li><strong>Pub/Sub:</strong> Producer emits event; all subscribers react. No direct coupling.</li>
+          <li><strong>Event Sourcing:</strong> State as immutable event log. Replay for auditability. High value in regulated domains.</li>
+          <li><strong>CQRS:</strong> Command (write) and Query (read) models separated. Enables independent scaling.</li>
+          <li><strong>Saga Pattern:</strong> Distributed transactions managed as sequence of events — replaces two-phase commits.</li>
+          <li><strong>Dead Letter Queue:</strong> Catches failed events. Without it, one bad event stalls a subscription permanently.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>EDA Failure Modes to Diagnose</h3>
+        <ul>
+          <li>Backlog accumulation with no visible symptoms — consumers fall behind silently</li>
+          <li>No distributed tracing — debugging a cross-service bug becomes a multi-hour investigation</li>
+          <li>Non-idempotent consumers — duplicate event delivery causes data corruption</li>
+          <li>Strict global ordering assumed — most brokers only offer partition-level ordering</li>
+          <li>Event schema changes unmanaged — breaks downstream consumers across ARTs</li>
+          <li>No event portal / governance — teams publish events without shared contract</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="ds-panel-aivalue">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:#a78bfa">Blueprint 07</div>
+    <div class="s-title">AI Value Blueprint</div>
+    <p class="s-intro">
+      AI value is the hardest problem in enterprise delivery right now. Individual productivity gains are real but organisational delivery metrics stay flat — the DORA 2025 "AI Productivity Paradox." The SPC who can diagnose <em>why</em> and prescribe <em>how</em> to close that gap is the practitioner every CTO and CDO needs in 2026.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:#a78bfa">The Core Problem</div>
+    <div class="s-title">The AI Productivity Paradox — and why it matters</div>
+    <div class="callout" style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.25);">
+      <div class="callout-header" style="color:#a78bfa">⚠️ DORA 2025 Finding — The Paradox</div>
+      <p style="color:rgba(200,185,255,0.85);">AI coding assistants produce <strong>21% more tasks completed</strong> and <strong>98% more pull requests merged</strong> at individual level — but <strong>organisational delivery metrics stay flat</strong>. More PRs, same lead time. More tasks, same deployment frequency. Individual output up; team throughput unchanged.</p>
+      <p style="color:rgba(200,185,255,0.85);">The reason: developers using AI interact with <strong>67% more PR contexts</strong> and <strong>18% more task contexts</strong> daily. Work restarts are up 14%. Stalled in-progress tasks up 26%. AI accelerates starting work — not finishing it. The bottleneck moved; it wasn't removed.</p>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Why the Paradox Happens</h3>
+        <ul>
+          <li>AI boosts individual output but doesn't fix team coordination overhead</li>
+          <li>More code generated = more review burden on the same humans</li>
+          <li>AI amplifies whatever it touches — dysfunctional review processes get worse</li>
+          <li>Deployment pipeline bottlenecks exist regardless of how fast code is written</li>
+          <li>Architecture coupling limits independent deployment even with faster coding</li>
+          <li>Rework rate increases if AI-generated code isn't validated before merge</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>How to Break the Paradox</h3>
+        <ul>
+          <li>Measure at team level, not individual: DORA metrics, not PR count</li>
+          <li>Fix review bottlenecks before adding AI — don't amplify the constraint</li>
+          <li>Loosen architecture coupling: parallel deployment requires independent boundaries</li>
+          <li>AI in the deployment pipeline, not just the IDE: automate testing and review gates</li>
+          <li>Define human-AI handoff points explicitly — not left to each engineer's judgment</li>
+          <li>Kill work in progress limits: AI generates faster than humans can absorb</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="ds-panel-metrics">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:#34d399">Blueprint 08</div>
+    <div class="s-title">Metrics Blueprint</div>
+    <p class="s-intro">
+      Measurement is the SPC's authority anchor. You cannot improve what you cannot see, and you cannot convince executives what you cannot quantify. This blueprint covers the complete 2026 metrics stack: DORA 5, SPACE, flow metrics, AI metrics, business outcomes — and critically, how to connect delivery performance to C-suite language.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:#34d399">Full Metrics Stack</div>
+    <div class="s-title">Four measurement layers — each serving a different audience</div>
+    <div class="grid-2">
+      <div class="card" style="border-top:2px solid #34d399">
+        <div class="card-icon">📐</div>
+        <h3>Layer 1 · DORA 5 (Team Performance)</h3>
+        <p>The gold standard for software delivery measurement. Five metrics covering throughput and stability. Audience: Engineering leadership, RTEs, SADLs.</p>
+        <ul>
+          <li><strong>Deployment Frequency</strong> — how often to prod</li>
+          <li><strong>Lead Time for Changes</strong> — commit to live</li>
+          <li><strong>Change Failure Rate</strong> — % deployments causing incidents</li>
+          <li><strong>Failed Deployment Recovery Time</strong> — time to restore</li>
+          <li><strong>Rework Rate (new 2025)</strong> — reactive vs. planned work ratio</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid #6c8fff">
+        <div class="card-icon">🔬</div>
+        <h3>Layer 2 · SPACE (Developer Experience)</h3>
+        <p>Satisfaction, Performance, Activity, Communication, Efficiency. Captures the human dimension DORA misses. Audience: Engineering managers, Agile coaches, People teams.</p>
+        <ul>
+          <li><strong>Satisfaction:</strong> developer NPS, engagement, retention signal</li>
+          <li><strong>Performance:</strong> quality of outcomes, not output volume</li>
+          <li><strong>Activity:</strong> volume of actions (used carefully — not a productivity proxy)</li>
+          <li><strong>Communication:</strong> discovery, onboarding, integration quality</li>
+          <li><strong>Efficiency:</strong> flow, minimal interruptions, handoff quality</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid #fb923c">
+        <div class="card-icon">🌊</div>
+        <h3>Layer 3 · Flow Metrics (SAFe PI Level)</h3>
+        <p>Mik Kersten's Flow Framework — connects engineering work to business outcomes. Audience: SADLs, RTEs, Product Managers, LPM.</p>
+        <ul>
+          <li><strong>Flow Velocity:</strong> business items completed per time period</li>
+          <li><strong>Flow Efficiency:</strong> active time vs. wait time in value stream</li>
+          <li><strong>Flow Time:</strong> end-to-end elapsed time from feature start to value delivery</li>
+          <li><strong>Flow Load:</strong> WIP — items in progress vs. completed</li>
+          <li><strong>Flow Distribution:</strong> mix of features, defects, debt, risk across PI</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid #f472b6">
+        <div class="card-icon">📈</div>
+        <h3>Layer 4 · Business Outcomes (C-Suite)</h3>
+        <p>Connects delivery to P&L. The language of the executive sponsor. Audience: CFO, CEO, Business Owners, Board.</p>
+        <ul>
+          <li><strong>Time-to-Market:</strong> lead time in weeks/months — competitive framing</li>
+          <li><strong>Cost of Delay:</strong> WSJF's economic signal — delayed feature = $ lost</li>
+          <li><strong>PI Predictability:</strong> % committed features delivered — budget confidence</li>
+          <li><strong>Value per $:</strong> OKR actuals vs. PI spend — portfolio ROI</li>
+          <li><strong>AI ROI:</strong> DORA movement per $ of AI investment</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="ds-panel-casestudies">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:#fbbf24">Blueprint 09</div>
+    <div class="s-title">Case Studies Wiki</div>
+    <p class="s-intro">
+      The world's most studied delivery transformations — examined not as inspiration but as <strong>diagnostic evidence</strong>. For each case, the SPC question is: what structural conditions made this work, what failed, and what is the transferable principle? Copying the label is the most common mistake. Understanding the mechanism is the authority move.
+    </p>
+  </div>
+
+  <!-- CASE STUDY 1: SPOTIFY -->
+  <div class="section">
+    <div class="s-label" style="color:#fbbf24">Case Study 01</div>
+    <div class="s-title" style="display:flex;align-items:center;gap:12px">
+      <span style="font-size:28px">🎵</span> Spotify — The Model That Reshaped an Industry
+    </div>
+
+    <div class="signal-strip">
+      <div class="signal-cell"><div class="signal-value" style="color:#fbbf24">2012</div><div class="signal-label">Original whitepaper published — 250 engineers, 3 cities
+</div></div>
+<div class="wpanel" id="ds-panel-decentralised">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:#22d3ee">Blueprint 10</div>
+    <div class="s-title">Decentralised Teams Blueprint</div>
+    <p class="s-intro">
+      87% of tech companies plan to maintain or expand distributed teams. 32% of developers globally now work remotely. Distribution is not a constraint to manage — it is a delivery model to architect deliberately. The SPC who understands the structural, cultural, and technical conditions for high-performing distributed teams operates at the frontier of the profession in 2026.
+    </p>
+  </div>
+
+  <!-- SIGNALS -->
+  <div class="section">
+    <div class="s-label" style="color:#22d3ee">Current State · 2026</div>
+    <div class="signal-strip">
+      <div class="signal-cell"><div class="signal-value" style="color:#22d3ee">87%</div><div class="signal-label">Tech companies maintaining or expanding distributed teams
+</div></div>
+</div>
+
+<!-- CIO AI WIKI -->
+<div class="wiki-panel" id="wiki-cio" data-wiki="cio">
+  <div class="subnav"><button class="sub-btn active" data-wikiid="cio" data-p="cio-s">01 · Strategy</button>
+  <button class="sub-btn" data-wikiid="cio" data-p="cio-g">02 · Governance</button>
+  <button class="sub-btn" data-wikiid="cio" data-p="cio-a">03 · Assurance</button>
+  <button class="sub-btn" data-wikiid="cio" data-p="cio-i">04 · Implementation</button>
+  <button class="sub-btn" data-wikiid="cio" data-p="cio-o">05 · Operating Model</button>
+  <button class="sub-btn" data-wikiid="cio" data-p="cio-f">06 · Investment</button>
+  <button class="sub-btn" data-wikiid="cio" data-p="cio-t">07 · Talent</button>
+  <button class="sub-btn" data-wikiid="cio" data-p="cio-r">08 · Risk & Regulatory</button></div>
+  
+<div class="wpanel active" id="cio-p-s">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b1)">Blueprint 01</div>
+    <div class="s-title">AI Strategy Blueprint</div>
+    <p class="s-intro">The enterprise AI strategy that wins in 2026 is execution-first — not vision-first. <cite index="4-1">The hard part was never getting a demo to work. The hard part was making it repeatable, governed, and measurable across the business.</cite> The CIO's role is to architect that transition from experimentation to durable enterprise capability.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b1)">The Imperative</div>
+    <div class="s-title">Why strategy can't wait</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-val" style="color:var(--b1)">80%</div><div class="stat-lbl">AI projects fail — twice the rate of traditional IT (Ethyca 2026)
+</div></div>
+<div class="wpanel" id="cio-p-g">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b2)">Blueprint 02</div>
+    <div class="s-title">AI Governance Blueprint</div>
+    <p class="s-intro"><cite index="14-1">AI governance is the operating framework that determines how AI systems are approved, deployed, monitored, and retired inside an enterprise.</cite> Most programs fail because they confuse governance with policy. A PDF is not a control. Governance only works when it reaches the infrastructure where data flows and decisions are made.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b2)">Governance Architecture</div>
+    <div class="s-title">Three-layer governance structure</div>
+    <div class="g3">
+      <div class="card" style="border-top:2px solid var(--b6)">
+        <div class="card-icon">🏛️</div>
+        <h3>Board & Executive Layer</h3>
+        <p>Strategic accountability and oversight. Sets risk appetite, approves AI investment strategy, and ensures AI is a standing board agenda item.</p>
+        <ul>
+          <li><strong>54%</strong> of directors say AI is not a standing board agenda item (Diligent 2026) — fix this first</li>
+          <li>Only <strong>8%</strong> of boards rate themselves as having strong AI expertise</li>
+          <li>Board AI Risk Committee: quarterly reporting on AI risk posture</li>
+          <li>CEO and CIO accountable for AI strategy delivery</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b2)">
+        <div class="card-icon">⚖️</div>
+        <h3>AI Governance Office (AGO)</h3>
+        <p><cite index="3-1">Invest in an AI Governance Office to centralise governance, training, ethics, and deployment frameworks — ensuring strong cross-functional alignment among IT, Legal, HR, and Data teams.</cite></p>
+        <ul>
+          <li>Single cross-functional taskforce — not fragmented committees</li>
+          <li>Representatives: Technology, Legal, Compliance, Business Units, Ethics</li>
+          <li>Mandate to act, not just discuss — action-oriented, not a forum</li>
+          <li><strong>Forrester predicts 60%</strong> of Fortune 100 will appoint a Head of AI Governance in 2026</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b4)">
+        <div class="card-icon">⚡</div>
+        <h3>Operational Layer</h3>
+        <p>Embedded governance in delivery teams. Where governance becomes real — intake, approval, monitoring, and response built into how teams actually work.</p>
+        <ul>
+          <li>AI use case intake process — scored, risk-tiered, approved</li>
+          <li>Definition of Done includes ethics check for AI-touching features</li>
+          <li>Model monitoring: drift detection, bias alerts, performance degradation</li>
+          <li>Incident response workflow for AI failures</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="cio-p-a">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b3)">Blueprint 03</div>
+    <div class="s-title">AI Assurance Blueprint</div>
+    <p class="s-intro">AI assurance is not traditional IT testing. AI systems are probabilistic, not deterministic — the same input can produce different outputs, accuracy degrades as data changes, and emergent behaviours appear in production that weren't present in testing. Assurance must be continuous, not a gate.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b3)">Why Traditional Testing Fails</div>
+    <div class="s-title">Three characteristics that break conventional QA</div>
+    <div class="g3">
+      <div class="card" style="border-top:2px solid var(--b3)">
+        <div class="card-icon">🎲</div>
+        <h3>Probabilistic Outputs</h3>
+        <p>The same input can produce different outputs on different runs. Pass/fail testing frameworks built for deterministic software cannot validate AI at scale.</p>
+        <ul>
+          <li>Hallucination rate: even high-performing models hallucinate on 20–30% of factual queries without proper grounding</li>
+          <li>Evaluation sets required — not gut feel</li>
+          <li>Statistical sampling across output distributions, not individual test cases</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b3)">
+        <div class="card-icon">📉</div>
+        <h3>Data Dependencies</h3>
+        <p>Accuracy degrades as organisational data changes. A model validated on last year's data may be silently failing on this year's reality. Drift is invisible without continuous monitoring.</p>
+        <ul>
+          <li>Data drift: distribution of input data shifts from training data</li>
+          <li>Concept drift: the relationship between inputs and correct outputs changes</li>
+          <li>Model cards must include data provenance — training cutoff, sources, known gaps</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b3)">
+        <div class="card-icon">🌊</div>
+        <h3>Emergent Behaviour</h3>
+        <p>AI systems exhibit behaviours in production that weren't present in controlled testing — especially as usage scales and edge cases accumulate.</p>
+        <ul>
+          <li>Red-teaming required for high-risk AI before production deployment</li>
+          <li>Adversarial testing: deliberate attempts to cause harmful or incorrect outputs</li>
+          <li>Agentic AI multiplies emergent risk — agents take actions, not just outputs</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="cio-p-i">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b4)">Blueprint 04</div>
+    <div class="s-title">AI Implementation Blueprint</div>
+    <p class="s-intro"><cite index="4-1">In 2026, enterprise AI is shifting toward agentic workflows: systems that don't just respond, but take multi-step actions — read and extract from PDFs, validate data, call internal tools, update records, and route work to humans when needed. That raises the stakes.</cite> Implementation must be architected for this reality, not the chatbot era.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b4)">Implementation Model</div>
+    <div class="s-title">Build · Buy · Assemble — the 2026 framework</div>
+    <div class="matrix">
+      <div class="mx-cell">
+        <h4 style="color:var(--b4)">Build</h4>
+        <ul>
+          <li>Custom models fine-tuned on proprietary data — competitive differentiation</li>
+          <li>Internal AI platforms and tooling unique to your domain</li>
+          <li>When: unique data asset + clear competitive advantage + budget for MLOps</li>
+          <li>Risk: highest cost, longest time-to-value, requires specialist talent</li>
+          <li>Rule: if a vendor can do it at 80% quality for 20% of the cost, buy</li>
+        </ul>
+      </div>
+      <div class="mx-cell">
+        <h4 style="color:var(--b1)">Buy</h4>
+        <ul>
+          <li>SaaS AI products, embedded AI in existing enterprise software</li>
+          <li>Foundation model APIs (OpenAI, Anthropic, Google, etc.)</li>
+          <li>When: commodity capability, fast time-to-value, no differentiation needed</li>
+          <li>Risk: vendor lock-in, data sovereignty, model changes outside your control</li>
+          <li>Rule: always negotiate data handling terms before signing</li>
+        </ul>
+      </div>
+      <div class="mx-cell">
+        <h4 style="color:var(--b6)">Assemble</h4>
+        <ul>
+          <li>Orchestration layer connecting multiple models, tools, data sources</li>
+          <li>RAG (Retrieval-Augmented Generation) on proprietary knowledge</li>
+          <li>When: custom behaviour required, multiple capability sources needed</li>
+          <li>Risk: integration complexity, evaluation burden, observability challenges</li>
+          <li>Rule: invest in evaluation infrastructure before scaling assembled systems</li>
+        </ul>
+      </div>
+      <div class="mx-cell">
+        <h4 style="color:var(--b5)">Agentic (Emerging)</h4>
+        <ul>
+          <li>Autonomous agents executing multi-step tasks across systems</li>
+          <li>Agent orchestration: A2A protocol, Model Context Protocol (MCP)</li>
+          <li>When: repetitive multi-step processes with clear success criteria</li>
+          <li>Risk: highest — agents act, not just output. Requires explicit human-in-loop design</li>
+          <li>Rule: never deploy agentic AI to Tier 1 use cases without graduated autonomy framework</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="cio-p-o">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b5)">Blueprint 05</div>
+    <div class="s-title">AI Operating Model Blueprint</div>
+    <p class="s-intro">The operating model is how the organisation actually runs AI day-to-day — roles, responsibilities, human-AI handoff design, and the structural difference between an AI-enabled organisation and one that has bought tools. Most AI strategies fail not on technology but on operating model design.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b5)">Key Roles</div>
+    <div class="s-title">The AI operating model role map</div>
+    <div class="g3">
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">🎯</div>
+        <h3>AI Value Architect</h3>
+        <p>Guides the organisation from AI outputs to measurable business outcomes. Navigates cost, ethics, legal, and risk. The new role from AI-Native SAFe — increasingly standard in 2026.</p>
+        <ul>
+          <li>Owns the AI outcome hypothesis and ROI validation</li>
+          <li>First-line ethics and risk gateway — embedded in delivery, not delegated to Legal</li>
+          <li>Reports to CIO; advises Business Unit leaders</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">🤖</div>
+        <h3>AI Agent Orchestrator</h3>
+        <p>Manages the fleet of autonomous AI agents — their tasks, escalation paths, performance, and human handoff triggers. A new role with no established career path yet.</p>
+        <ul>
+          <li>Designs human-in-the-loop intervention points</li>
+          <li>Monitors agent behaviour for drift and unexpected actions</li>
+          <li>Owns the agentic AI incident response for their domain</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">🛡️</div>
+        <h3>AI Quality Steward</h3>
+        <p>Validates and audits AI outputs continuously. The assurance function embedded in teams — not a central QA team reviewing outputs after the fact.</p>
+        <ul>
+          <li>Maintains evaluation sets and benchmarks for each AI system</li>
+          <li>Monitors groundedness rate, hallucination rate, drift index</li>
+          <li>Triggers retraining or retirement decisions</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">📊</div>
+        <h3>AI Data Steward</h3>
+        <p>Owns data quality, lineage, and governance for AI systems. The most critical and most underestimated role — data problems are the primary cause of AI failure.</p>
+        <ul>
+          <li>Data provenance: what data, from where, for what purpose, with what consent</li>
+          <li>Training data curation and version control</li>
+          <li>Data residency and access controls for AI pipelines</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">🏗️</div>
+        <h3>AI Platform Engineer</h3>
+        <p>Builds and maintains the AI infrastructure layer — the internal developer platform capabilities that make AI deployment repeatable and safe across the enterprise.</p>
+        <ul>
+          <li>Golden paths for AI deployment — consistent, governed, self-service</li>
+          <li>MLOps / LLMOps: CI/CD for models and prompts, not just code</li>
+          <li>Inference cost management — FinOps for AI at scale</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">🌟</div>
+        <h3>AI Champion (per team)</h3>
+        <p>Peer advocate in each business team. Drives local adoption, surfaces barriers, bridges between the AGO and day-to-day reality. Not a manager — a trusted peer.</p>
+        <ul>
+          <li>First point of contact for team AI questions</li>
+          <li>Surfaces shadow AI use to AGO — channel, not police</li>
+          <li>Feedback loop from teams to AI platform and governance teams</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="cio-p-f">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b6)">Blueprint 06</div>
+    <div class="s-title">AI Investment Blueprint</div>
+    <p class="s-intro">AI investment governance is where CIO authority meets CFO and Board expectations. Most AI programs fail to demonstrate ROI not because the AI doesn't work but because the wrong things were measured, the wrong investments were made, and nobody defined what success looked like before the money was spent.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b6)">Investment Categories</div>
+    <div class="s-title">Four AI budget buckets — funding the right things correctly</div>
+    <div class="g2">
+      <div class="card" style="border-top:2px solid var(--b6)">
+        <div class="card-icon">🚀</div>
+        <h3>AI Use Case Investment</h3>
+        <p>Direct investment in AI capabilities that deliver business outcomes. The primary value bucket — but only sustainable when the foundation exists.</p>
+        <ul>
+          <li>Funded against outcome hypothesis — not feature list</li>
+          <li>Quarterly portfolio review: scale winners, kill underperformers</li>
+          <li>Kill criteria defined before funding approved</li>
+          <li>ROI measured in business metrics, not AI metrics</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b2)">
+        <div class="card-icon">🏗️</div>
+        <h3>AI Enabler Investment</h3>
+        <p>Data platform, AI infrastructure, governance tooling, evaluation frameworks. The investment that makes all other AI investment work. Chronically underfunded.</p>
+        <ul>
+          <li>Target: 25–35% of total AI budget</li>
+          <li>Includes MLOps, LLMOps, vector databases, feature stores</li>
+          <li>FinOps integration: AI inference costs tracked before they surprise</li>
+          <li>CIO argument to CFO: enablers are the multiplier, not overhead</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">🧪</div>
+        <h3>AI Experimentation Budget</h3>
+        <p>Time-boxed exploration. Produces learning, not necessarily production AI. Governed by hypothesis and time-box, not open-ended spend.</p>
+        <ul>
+          <li>Standard time-box: 6–12 weeks per experiment</li>
+          <li>Success = learning, not just deployment</li>
+          <li>Kill criteria honoured — no political pressure to extend failing pilots</li>
+          <li>Experiment results shared across portfolio — avoid reinventing</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b4)">
+        <div class="card-icon">⚙️</div>
+        <h3>AI Operational Budget</h3>
+        <p>Ongoing costs: model inference, API fees, monitoring tooling, licences. The budget line that surprises organisations who didn't plan for AI at scale.</p>
+        <ul>
+          <li>Inference at scale is expensive — model per-token costs compound fast</li>
+          <li>FinOps standard: cost visibility before deployment, not after invoice</li>
+          <li>On-prem inference: 88% cheaper than cloud equivalent at large scale</li>
+          <li>Track cost-per-successful-task, not just total spend</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="cio-p-t">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b7)">Blueprint 07</div>
+    <div class="s-title">AI Talent Blueprint</div>
+    <p class="s-intro">AI talent is the constraint that determines whether AI strategy delivers or stalls. The 10-20-70 rule makes this explicit — 70% of AI success is people and process. The CIO who treats talent as an HR problem rather than a strategic capability question will watch the technology investment underperform.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b7)">Market Reality</div>
+    <div class="s-title">2026 AI talent signals</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-val" style="color:var(--b7)">56%</div><div class="stat-lbl">Pay premium for advanced AI skills (PwC 2026)
+</div></div>
+<div class="wpanel" id="cio-p-r">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b8)">Blueprint 08</div>
+    <div class="s-title">AI Risk & Regulatory Blueprint</div>
+    <p class="s-intro"><cite index="12-1">In 2026, the pace of AI regulation will remain unpredictable and increasingly stringent. As new laws set precedent for nationwide regulatory trends, organisations will face mounting pressure to prove their AI systems are compliant, transparent, and ethical.</cite> The CIO who builds regulatory readiness into the operating model — not the compliance team's spreadsheet — will avoid enforcement and competitive disadvantage simultaneously.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b8)">Regulatory Landscape</div>
+    <div class="s-title">The 2026 global AI regulatory map — what CIOs must navigate</div>
+    <table class="bp-table">
+      <thead><tr><th>Framework</th><th>Jurisdiction</th><th>Status</th><th>CIO obligation</th></tr></thead>
+      <tbody>
+        <tr><td><span class="td-h">EU AI Act</span>Most comprehensive AI regulation globally</td><td>European Union</td><td>Enforcing. Prohibited practices banned Feb 2025. High-risk systems deadline: Dec 2027</td><td>AI system inventory. Risk classification. Conformity assessments for high-risk. Audit trails. Fines up to €35M or 7% global turnover.</td></tr>
+        <tr><td><span class="td-h">ISO/IEC 42001</span>International AI management system standard</td><td>Global</td><td>Certifiable now. Multinational compliance "passport"</td><td>Pursue certification for multinational operations. Demonstrates governance maturity to regulators across jurisdictions.</td></tr>
+        <tr><td><span class="td-h">NIST AI RMF</span>AI Risk Management Framework</td><td>United States (voluntary, increasingly referenced)</td><td>In force. Four functions: Govern, Map, Measure, Manage</td><td>Adopt as internal risk management structure. Pairs with ISO 42001 for US operations.</td></tr>
+        <tr><td><span class="td-h">Colorado AI Act</span>First US state AI law for consequential decisions</td><td>United States — Colorado (precedent-setting)</td><td>Effective 2026. Disclosure and impact assessment for high-risk AI</td><td>If operating in Colorado or serving Colorado residents: document governance, bias controls, audit-ready decision logs.</td></tr>
+        <tr><td><span class="td-h">Australia AI Governance</span>Voluntary framework — mandatory elements emerging</td><td>Australia</td><td>Voluntary principles. Privacy Act reform in progress. Sector-specific rules (finance, health) tightening</td><td>Apply voluntary principles now. Privacy Act reform will tighten AI data use obligations. APRA regulated entities: AI in credit/insurance decisions under scrutiny.</td></tr>
+        <tr><td><span class="td-h">EU AI Liability Directive</span>Civil liability for AI-caused harm</td><td>European Union</td><td>In development — watch for 2026–27 enactment</td><td>Ensure AI systems can produce audit trails sufficient to defend against civil claims.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b8)">Risk Categories</div>
+    <div class="s-title">Six AI risk categories the CIO must own</div>
+    <div class="g2">
+      <div class="card" style="border-left:3px solid var(--b3)">
+        <div class="card-icon">⚖️</div>
+        <h3>Regulatory & Legal Risk</h3>
+        <p>Exposure to fines, enforcement actions, and civil liability from non-compliant AI deployment.</p>
+        <ul>
+          <li>EU AI Act: up to €35M or 7% global turnover for highest violations</li>
+          <li>AI Washing: regulatory and reputational risk for overstating AI capabilities</li>
+          <li>Employment law: AI in hiring/performance decisions — anti-discrimination exposure</li>
+          <li>Mitigation: regulatory horizon scanning + legal in AGO cross-functional team</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--b5)">
+        <div class="card-icon">📊</div>
+        <h3>Model Risk</h3>
+        <p>Risk that AI models produce incorrect, biased, or harmful outputs — silently and at scale.</p>
+        <ul>
+          <li>Hallucination at scale: incorrect outputs in customer-facing systems</li>
+          <li>Model drift: silent performance degradation as data distributions shift</li>
+          <li>Bias amplification: training data prejudices reflected in production decisions</li>
+          <li>Mitigation: continuous monitoring, evaluation sets, drift detection, bias audits</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--b1)">
+        <div class="card-icon">🔒</div>
+        <h3>Data & Privacy Risk</h3>
+        <p>AI creates risk in motion — data reused for new purposes, sensitive attributes inferred from harmless inputs, decisions made at machine speed without human review.</p>
+        <ul>
+          <li>Data leakage: employees sharing proprietary data with third-party AI services</li>
+          <li>Purpose limitation: AI using data beyond its original consent scope</li>
+          <li>Inference risk: AI inferring sensitive attributes (health, politics) from benign data</li>
+          <li>Mitigation: data classification + AI data handling policy + access controls</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--b6)">
+        <div class="card-icon">🤖</div>
+        <h3>Agentic AI Risk</h3>
+        <p>Autonomous agents that act — not just output — create risk categories that traditional IT governance wasn't designed to address.</p>
+        <ul>
+          <li>Irreversible actions: agents that delete, transact, or communicate without human review</li>
+          <li>Scope creep: agents pursuing goals in unexpected ways</li>
+          <li>Cross-jurisdictional action: agents that act across regulatory boundaries instantaneously</li>
+          <li>Mitigation: graduated autonomy framework, explicit human-in-loop, action logging</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--b4)">
+        <div class="card-icon">👥</div>
+        <h3>Third-Party & Vendor Risk</h3>
+        <p>AI risk doesn't stop at the organisational boundary. Vendor AI used internally carries the same obligations as internally-built AI.</p>
+        <ul>
+          <li>Model changes outside your control: vendor updates can silently change behaviour</li>
+          <li>Data handling: what happens to data submitted to third-party AI APIs?</li>
+          <li>Vendor lock-in: architecture dependence on a single AI provider</li>
+          <li>Mitigation: AI vendor due diligence standard + contractual data handling terms</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--b2)">
+        <div class="card-icon">🎭</div>
+        <h3>Reputational Risk</h3>
+        <p>AI failures that become public — biased outputs, harmful decisions, privacy breaches — carry reputational consequences that exceed the direct cost of the incident.</p>
+        <ul>
+          <li>AI washing: overclaiming AI capabilities triggers regulatory and media scrutiny</li>
+          <li>Algorithmic discrimination: visible cases destroy customer and employee trust</li>
+          <li>Board credibility: AI failures that surface during board reviews, not compliance audits</li>
+          <li>Mitigation: proactive transparency, ethics-in-delivery, rapid incident response</li>
+        </ul>
+      
+</div></div>
+</div>
+
+<!-- ICT PMO WIKI -->
+<div class="wiki-panel" id="wiki-pmo" data-wiki="pmo">
+  <div class="subnav"><button class="sub-btn active" data-wikiid="pmo" data-p="pmo-pm">01 · Portfolio Mgmt</button>
+  <button class="sub-btn" data-wikiid="pmo" data-p="pmo-gv">02 · Governance</button>
+  <button class="sub-btn" data-wikiid="pmo" data-p="pmo-rc">03 · Resource & Capacity</button>
+  <button class="sub-btn" data-wikiid="pmo" data-p="pmo-br">04 · Benefits Realisation</button>
+  <button class="sub-btn" data-wikiid="pmo" data-p="pmo-ai">05 · AI-Augmented PMO</button>
+  <button class="sub-btn" data-wikiid="pmo" data-p="pmo-om">06 · Operating Model</button>
+  <button class="sub-btn" data-wikiid="pmo" data-p="pmo-rm">07 · Reporting & Metrics</button>
+  <button class="sub-btn" data-wikiid="pmo" data-p="pmo-sh">08 · Stakeholder Mgmt</button></div>
+  
+<div class="wpanel active" id="pmo-p-pm">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b1)">Blueprint 01</div>
+    <div class="s-title">Portfolio Management Blueprint</div>
+    <p class="s-intro">The ICT PMO of 2026 is not a tracking function — it is a strategic portfolio engine. The shift from project-output accountability to portfolio-outcome accountability is the defining transformation. PMOs that cling to compliance reporting are at existential risk. Those that pivot to portfolio intelligence are indispensable.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b1)">2026 Signals</div>
+    <div class="s-title">The forces reshaping portfolio management</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-val" style="color:var(--b1)">18%</div><div class="stat-lbl">PMO professionals with high business acumen — 27% higher project failure rate without it (PMI 2025)
+</div></div>
+<div class="wpanel" id="pmo-p-gv">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b2)">Blueprint 02</div>
+    <div class="s-title">Governance Blueprint</div>
+    <p class="s-intro">ICT PMO governance in 2026 is not about control — it is about enabling fast, safe decision-making at the right level. The governance trap is adding approval layers that slow delivery without reducing risk. The governance design challenge is making decisions predictable, traceable, and appropriately delegated.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b2)">Governance Layers</div>
+    <div class="s-title">Three-tier ICT governance architecture</div>
+    <div class="g3">
+      <div class="card" style="border-top:2px solid var(--b6)">
+        <div class="card-icon">🏛️</div>
+        <h3>Portfolio Governance</h3>
+        <p>Strategic investment decisions. Portfolio Steering Committee with CIO, CFO, and Business Unit leaders. Meets quarterly — decisions only, no status.</p>
+        <ul>
+          <li>Portfolio investment allocation and reallocation</li>
+          <li>Strategic theme priority changes</li>
+          <li>Major programme approvals (&gt;$1M or high strategic risk)</li>
+          <li>Benefits realisation performance vs. investment</li>
+          <li>AI portfolio ethics and risk sign-off</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b2)">
+        <div class="card-icon">🚂</div>
+        <h3>Programme Governance</h3>
+        <p>Programme and project delivery decisions. Programme Board with sponsor, PMO lead, and delivery leads. Meets monthly — scope, risk, and benefit decisions.</p>
+        <ul>
+          <li>Scope change approval above threshold</li>
+          <li>Risk escalation from project level</li>
+          <li>Dependency resolution between projects</li>
+          <li>Resource conflict arbitration</li>
+          <li>Stage gate approvals (business case → delivery → benefits)</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b4)">
+        <div class="card-icon">⚡</div>
+        <h3>Project Governance</h3>
+        <p>Day-to-day delivery decisions. Project team with PM and technical leads. Decisions within approved tolerances — no escalation required.</p>
+        <ul>
+          <li>Scope changes within approved tolerance</li>
+          <li>Sprint/iteration planning and retrospective</li>
+          <li>Team-level risk and issue management</li>
+          <li>Vendor and technical decisions within scope</li>
+          <li>Escalate: anything outside tolerance to Programme Board</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="pmo-p-rc">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b3)">Blueprint 03</div>
+    <div class="s-title">Resource & Capacity Blueprint</div>
+    <p class="s-intro">Resource management is the primary operational constraint facing ICT PMOs in 2026. The bottleneck has shifted — it is no longer budget, it is <strong>limited resource capacity</strong>. Hybrid and distributed work models, shared resources across projects, and increasingly dynamic portfolios have made traditional resource management frameworks obsolete.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b3)">The Capacity Problem</div>
+    <div class="s-title">Why resource management keeps failing</div>
+    <div class="g3">
+      <div class="card" style="border-top:2px solid var(--b3)">
+        <div class="card-icon">🔄</div>
+        <h3>The Multi-Project Trap</h3>
+        <p>Engineers assigned across 3–5 projects simultaneously. Context-switching overhead destroys throughput. Visible in resource plans as 100% utilisation — invisible as actual delivery failure.</p>
+        <ul>
+          <li>Context switching costs 20–40% of productive time (research consensus)</li>
+          <li>WIP limit discipline: the solution, not better scheduling</li>
+          <li>PMO role: enforce WIP limits at portfolio level, not just project level</li>
+          <li>Signal: high utilisation + low velocity = context switching problem</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b3)">
+        <div class="card-icon">🎯</div>
+        <h3>Skill Mismatch vs. Headcount Shortage</h3>
+        <p>Most resource constraints are skill mismatches, not headcount shortages. The portfolio needs AI engineers — the available pool has Java developers. Hiring takes months; retraining takes quarters.</p>
+        <ul>
+          <li>Skills taxonomy: map current capability to portfolio demand</li>
+          <li>Quarterly skills gap forecast: 2 PI horizons ahead</li>
+          <li>Build vs. Buy vs. Borrow decision for each skill gap</li>
+          <li>AI skills now command 56% premium — budget for it</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b3)">
+        <div class="card-icon">📊</div>
+        <h3>Invisible Capacity — The Hidden Work</h3>
+        <p>BAU support, technical debt, unplanned incidents, and governance overhead consume 20–40% of team capacity that never appears in project resource plans.</p>
+        <ul>
+          <li>Time-box BAU and unplanned work in capacity model — not optional</li>
+          <li>Track actual vs planned capacity allocation monthly</li>
+          <li>Sustainability check: no team above 80% planned utilisation</li>
+          <li>AI signal: rising rework rate = hidden work consuming capacity</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="pmo-p-br">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b4)">Blueprint 04</div>
+    <div class="s-title">Benefits Realisation Blueprint</div>
+    <p class="s-intro">Benefits realisation is the most consistently neglected PMO function and the one that matters most to the CIO and CFO. Projects are approved on business cases but rarely closed against them. The ICT PMO that owns benefit outcomes — not just delivery milestones — earns a fundamentally different level of executive respect.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b4)">The Benefits Failure Pattern</div>
+    <div class="s-title">Why benefits never get realised — and how to fix it</div>
+    <div class="matrix">
+      <div class="mx-cell">
+        <h4 style="color:#ff5555">Common Failure Modes</h4>
+        <ul>
+          <li>Benefits defined vaguely at business case — "improved efficiency", "better customer experience" with no baseline or measure</li>
+          <li>Benefit ownership unclear — delivery team says business unit owns it; business unit says IT delivered it; nobody tracks it</li>
+          <li>Post-implementation review done 30 days after go-live — before any benefit is measurable</li>
+          <li>Project closed when software is deployed — benefits realisation doesn't begin until then</li>
+          <li>Benefits tracked in isolation — portfolio-level benefit performance never reported to steering</li>
+          <li>No consequence for business cases that don't deliver — sponsors face no accountability</li>
+        </ul>
+      </div>
+      <div class="mx-cell">
+        <h4 style="color:var(--b4)">The Fix — Structural, Not Process</h4>
+        <ul>
+          <li>Benefit hypothesis at Gate 1 — measurable, baselined, with owner named before business case begins</li>
+          <li>Named Benefit Owner (business unit, not PMO) — accountable to steering, not to the PM</li>
+          <li>Benefit realisation plan: milestones at 3, 6, 12, 24 months post-go-live</li>
+          <li>Portfolio benefit dashboard: actual vs target across all active investments — live, not quarterly</li>
+          <li>Benefits gate at portfolio review: underperforming benefits trigger investment re-evaluation</li>
+          <li>Benefit realisation as a KPI for business sponsors — tied to performance conversation</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="pmo-p-ai">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b5)">Blueprint 05</div>
+    <div class="s-title">AI-Augmented PMO Blueprint</div>
+    <p class="s-intro">Agentic AI is making traditional PMO coordination interfaces obsolete. AI that autonomously responds to trigger events — a slipping project, a resource gap, a benefit variance — removes the need for manual coordination across multiple tools, shifting the PMO's focus toward portfolio-level decision-making and judgment.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b5)">AI Capability Map</div>
+    <div class="s-title">What AI now does in the PMO — and what remains human</div>
+    <table class="bp-table">
+      <thead><tr><th>PMO function</th><th>AI capability (2026)</th><th>Human role</th><th>Readiness prerequisite</th></tr></thead>
+      <tbody>
+        <tr><td><span class="td-h">Project Status Reporting</span></td><td>AI aggregates data from Jira, Azure DevOps, financials — generates draft status report in natural language. NLP extracts risks from meeting notes and emails.</td><td>Review, contextualise, approve. Add judgment AI cannot provide.</td><td>Integrated toolchain with clean data. NLP tools configured per project type.</td></tr>
+        <tr><td><span class="td-h">Risk Identification</span></td><td>Predictive models flag schedule variance, budget overrun, and resource constraint risk before they become issues. Trained on historical project patterns.</td><td>Assess severity, decide response, escalate. AI flags — humans decide.</td><td>3+ years of consistent historical project data. Risk taxonomy standardised.</td></tr>
+        <tr><td><span class="td-h">Resource Scheduling</span></td><td>AI optimises resource assignment across portfolio given constraints — skill requirements, availability, WIP limits, project priority.</td><td>Approve or override AI recommendations. Handle political and relationship dimensions.</td><td>Skills taxonomy in HRIS. Project demand data in PPM tool. Integration between systems.</td></tr>
+        <tr><td><span class="td-h">Portfolio Forecasting</span></td><td>Real-time scenario modelling: what happens to portfolio delivery if Project X is delayed? AI recalculates dependencies and resource impacts instantly.</td><td>Select scenario, make strategic decision, communicate. AI models — humans choose.</td><td>Dependency mapping in PPM tool. Financial model integration.</td></tr>
+        <tr><td><span class="td-h">Benefits Tracking</span></td><td>AI monitors KPIs from operational systems — automatically updates benefit realisation dashboard when data is available.</td><td>Interpret variance, investigate underperformance, recommend portfolio action.</td><td>KPI data accessible from operational systems. Benefit baseline recorded at project close.</td></tr>
+        <tr><td><span class="td-h">Stakeholder Sentiment</span></td><td>AI analyses communications (meeting transcripts, emails, surveys) to gauge stakeholder engagement risk and identify early signals of resistance.</td><td>Act on signals. Have the human conversations AI cannot have.</td><td>Communication data in governed system. Privacy and consent framework in place.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b5)">Implementation Roadmap</div>
+    <div class="s-title">Three-horizon AI adoption for the ICT PMO</div>
+    <div class="g3">
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">📊</div>
+        <h3>Horizon 1 · Data Foundation (Now)</h3>
+        <p>AI is only as good as the data it operates on. Only 14% of IT leaders are confident their data is AI-ready. This is the prerequisite, not the afterthought.</p>
+        <ul>
+          <li>Standardise project data fields across all PPM tool entries</li>
+          <li>Close historical data gaps — 3 years minimum for predictive models</li>
+          <li>Integrate PPM, HRIS, financial, and DevOps toolchains</li>
+          <li>Establish data quality KPI — measured monthly</li>
+          <li>Context engineering: structure project data for AI consumption</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">🤖</div>
+        <h3>Horizon 2 · Augmented PMO (6–18 months)</h3>
+        <p>AI assists PMO analysts with routine tasks. Humans remain in control of all decisions. The PMO team's time shifts from data gathering to decision support.</p>
+        <ul>
+          <li>AI-generated draft status reports — PMO reviews and approves</li>
+          <li>Predictive risk flagging — PMO interprets and escalates</li>
+          <li>NLP meeting note extraction — actions and risks surfaced automatically</li>
+          <li>Resource optimisation recommendations — PM approves deployment</li>
+          <li>Benefits dashboard automation — live data, not manual update</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">⚡</div>
+        <h3>Horizon 3 · Agentic PMO (18–36 months)</h3>
+        <p>AI agents autonomously respond to portfolio trigger events. PMO focuses on strategic portfolio management and exception handling. This is the VMO model.</p>
+        <ul>
+          <li>Agentic scheduling: agent detects resource gap, proposes reallocation, executes upon approval</li>
+          <li>Continuous portfolio rebalancing: AI recommends investment shifts as conditions change</li>
+          <li>Automated stage gate evidence collection — humans make the decision</li>
+          <li>Natural language portfolio queries: "What projects are at risk of missing Q4 delivery?"</li>
+          <li>Human role: judgment, relationships, strategy, exception management</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="pmo-p-om">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b6)">Blueprint 06</div>
+    <div class="s-title">PMO Operating Model Blueprint</div>
+    <p class="s-intro">The ICT PMO operating model determines whether the function enables delivery or obstructs it. The 2026 shift is from centralised command-and-control to federated enablement — smaller, product-aligned PMO functions that operate with autonomy and report outcomes, not compliance.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b6)">PMO Models</div>
+    <div class="s-title">Three PMO archetypes — choose deliberately</div>
+    <div class="g3">
+      <div class="card" style="border-top:2px solid var(--b3)">
+        <div class="card-icon">🏛️</div>
+        <h3>Directive PMO</h3>
+        <p>Centralised control. Sets standards, owns methodology, assigns PMs, enforces compliance. Traditional model. Appropriate for highly regulated, low-ambiguity environments.</p>
+        <ul>
+          <li>Strengths: consistency, governance rigour, clear accountability</li>
+          <li>Weaknesses: slow, creates bottlenecks, stifles product team autonomy</li>
+          <li>Best for: infrastructure, compliance, and high-risk programmes</li>
+          <li>2026 signal: declining in favour for software and product delivery</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b2)">
+        <div class="card-icon">🤝</div>
+        <h3>Supportive PMO</h3>
+        <p>Enablement model. Provides templates, coaching, tooling, and portfolio visibility. Teams own their delivery. PMO owns standards and reporting.</p>
+        <ul>
+          <li>Strengths: speed, team autonomy, low overhead, trust-building</li>
+          <li>Weaknesses: requires mature delivery teams; weak on governance enforcement</li>
+          <li>Best for: agile and hybrid product portfolios</li>
+          <li>2026 signal: most common model in high-performing ICT PMOs</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b4)">
+        <div class="card-icon">🎯</div>
+        <h3>VMO — Value Management Office</h3>
+        <p>The 2026 evolution. Focuses on benefit outcomes, strategic alignment, and portfolio intelligence. Governs by value, not by process. The CIO's strategic partner.</p>
+        <ul>
+          <li>Strengths: executive credibility, outcome focus, strategic relevance</li>
+          <li>Weaknesses: requires strong business acumen — only 18% of PMO professionals have it</li>
+          <li>Best for: mature organisations with CIO mandate for transformation</li>
+          <li>2026 signal: PMOs that don't evolve toward VMO risk obsolescence</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="pmo-p-rm">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b7)">Blueprint 07</div>
+    <div class="s-title">Reporting & Metrics Blueprint</div>
+    <p class="s-intro">The PMO reporting transformation in 2026 is from status recitation to portfolio intelligence. The shift from "here is what happened" to "here is what it means and what we recommend" is where PMO authority is built or lost. AI generates the status — humans provide the judgment.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b7)">Metric Stack</div>
+    <div class="s-title">Four reporting layers — each serving a different audience</div>
+    <div class="g2">
+      <div class="card" style="border-top:2px solid var(--b6)">
+        <div class="card-icon">🏛️</div>
+        <h3>Layer 1 · Portfolio Health (Board / CIO)</h3>
+        <p>Strategic performance of the ICT investment portfolio. Monthly to quarterly. Language: outcomes and value, not milestones and tasks.</p>
+        <ul>
+          <li><strong>Portfolio benefit realisation:</strong> actuals vs. targets by investment category</li>
+          <li><strong>Strategic alignment score:</strong> % of active investment aligned to strategic themes</li>
+          <li><strong>Portfolio ROI:</strong> benefit value delivered vs. total portfolio spend</li>
+          <li><strong>Investment health:</strong> % of portfolio on track, at risk, in distress</li>
+          <li><strong>AI portfolio performance:</strong> AI initiative ROI vs. AI investment</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b2)">
+        <div class="card-icon">🚂</div>
+        <h3>Layer 2 · Programme Performance (Executives)</h3>
+        <p>Programme and major project health. Fortnightly. Language: decisions needed, risks escalated, benefits on track.</p>
+        <ul>
+          <li><strong>RAG status:</strong> objective criteria, not PM optimism</li>
+          <li><strong>Schedule performance index (SPI):</strong> earned value metric</li>
+          <li><strong>Cost performance index (CPI):</strong> budget vs. actuals trend</li>
+          <li><strong>Scope change volume:</strong> unplanned scope as % of approved baseline</li>
+          <li><strong>Risk register heat:</strong> top 5 risks with owner and mitigation status</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">⚡</div>
+        <h3>Layer 3 · Delivery Flow (PMO / Delivery Teams)</h3>
+        <p>Week-to-week delivery performance. Weekly. Language: throughput, blockers, capacity, predictability.</p>
+        <ul>
+          <li><strong>Velocity / throughput:</strong> story points or features completed per sprint</li>
+          <li><strong>PI predictability:</strong> % features delivered vs. committed (SAFe teams)</li>
+          <li><strong>Cycle time:</strong> average time from start to done per work item</li>
+          <li><strong>Blocker age:</strong> unresolved blockers and days outstanding</li>
+          <li><strong>Unplanned injection rate:</strong> % unplanned work vs. planned capacity</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b4)">
+        <div class="card-icon">👥</div>
+        <h3>Layer 4 · Capacity & Resource (Resource Managers)</h3>
+        <p>Resource health across the portfolio. Monthly. Language: utilisation, gaps, conflicts, risk of burnout.</p>
+        <ul>
+          <li><strong>Utilisation by role:</strong> planned vs. actual — flag anyone above 85%</li>
+          <li><strong>Skill gap index:</strong> demand vs. supply by capability cluster</li>
+          <li><strong>Contractor dependency:</strong> % of portfolio delivery capacity on contingent workers</li>
+          <li><strong>Time-to-fill:</strong> average days to fill open resource gaps</li>
+          <li><strong>Team wellbeing signal:</strong> SPACE framework — satisfaction, efficiency</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="pmo-p-sh">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b8)">Blueprint 08</div>
+    <div class="s-title">Stakeholder Management Blueprint</div>
+    <p class="s-intro">Stakeholder management is the PMO capability with the highest correlation to project success and the lowest investment in most organisations. AI can now analyse sentiment, flag engagement risk, and draft communications — but the relationship work, the difficult conversations, and the trust-building remain irreducibly human.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b8)">Stakeholder Landscape</div>
+    <div class="s-title">ICT PMO stakeholder map — interests, influence, and risk</div>
+    <table class="bp-table">
+      <thead><tr><th>Stakeholder</th><th>Primary interest</th><th>Influence</th><th>Engagement risk</th><th>PMO approach</th></tr></thead>
+      <tbody>
+        <tr><td><span class="td-h">CIO</span></td><td>Portfolio performance, AI strategy, board confidence</td><td>High</td><td>Low if PMO demonstrates value; high if PMO is seen as overhead</td><td>Weekly 1:1 with portfolio intelligence briefing. No surprises.</td></tr>
+        <tr><td><span class="td-h">CFO</span></td><td>Investment ROI, budget adherence, benefit realisation</td><td>High</td><td>Medium — finance speaks a different language. Bridge the gap or lose the budget.</td><td>Monthly benefit realisation report in financial language. CPI and budget trend.</td></tr>
+        <tr><td><span class="td-h">Business Unit Leaders</span></td><td>Speed of delivery, business outcome, minimal disruption</td><td>High</td><td>High — "IT never delivers on time or budget" is the default prior. Manage actively.</td><td>Fortnightly sponsor update. Escalate decisions to them, not past them.</td></tr>
+        <tr><td><span class="td-h">IT Delivery Teams</span></td><td>Clear requirements, protected capacity, realistic timelines</td><td>Medium</td><td>Medium — PMO perceived as adding overhead. Prove value by removing blockers, not adding gates.</td><td>Serve them first. Ask what the PMO can remove, not what it can add.</td></tr>
+        <tr><td><span class="td-h">Vendors / Partners</span></td><td>Clear scope, timely decisions, payment, relationship continuity</td><td>Medium</td><td>Low if managed well; high if decisions are slow and scope is unclear.</td><td>Governance cadence in contract. Decision SLA agreed. Escalation path defined.</td></tr>
+        <tr><td><span class="td-h">Risk / Compliance / Legal</span></td><td>Risk visibility, regulatory adherence, audit defensibility</td><td>Medium–High for regulated programmes</td><td>Low if engaged early; high if surprised by a risk they should have been told about.</td><td>Include in stage gate reviews. Risk register shared proactively, not after the fact.</td></tr>
+        <tr><td><span class="td-h">End Users</span></td><td>Usability, minimal disruption, training support</td><td>Low formally; high in adoption success</td><td>High — user resistance is the most common cause of benefits not being realised after go-live.</td><td>Change management plan includes user engagement from Discovery, not just before go-live.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b8)">Communication Design</div>
+    <div class="s-title">Async-first stakeholder communication — the 2026 standard</div>
+    <div class="g2">
+      <div class="card">
+        <h3>Keep Synchronous</h3>
+        <ul>
+          <li>Portfolio steering decisions — alignment requires live negotiation</li>
+          <li>Escalation discussions — risk and scope decisions with business impact</li>
+          <li>Stage gate reviews — go/no-go requires accountable presence</li>
+          <li>Difficult conversations — performance, scope disputes, vendor issues</li>
+          <li>Relationship investment — quarterly lunch with sponsors, not status meetings</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Move Asynchronous</h3>
+        <ul>
+          <li>Weekly project status → written RAG report with AI-assisted narrative</li>
+          <li>Risk updates → risk digest circulated Monday AM</li>
+          <li>Benefit tracking → live dashboard, not presented in meetings</li>
+          <li>Decision documentation → async record of decisions made in sync sessions</li>
+          <li>Lessons learned → structured survey before retrospective, not during</li>
+        </ul>
+      
+</div></div>
+</div>
+
+<!-- EPMO WIKI -->
+<div class="wiki-panel" id="wiki-epmo" data-wiki="epmo">
+  <div class="subnav"><button class="sub-btn active" data-wikiid="epmo" data-p="epmo-sp">01 · Strategic Portfolio</button>
+  <button class="sub-btn" data-wikiid="epmo" data-p="epmo-ig">02 · Investment Governance</button>
+  <button class="sub-btn" data-wikiid="epmo" data-p="epmo-dp">03 · Dependency & Sequencing</button>
+  <button class="sub-btn" data-wikiid="epmo" data-p="epmo-fi">04 · Enterprise Funding</button>
+  <button class="sub-btn" data-wikiid="epmo" data-p="epmo-br">05 · Benefits Realisation</button>
+  <button class="sub-btn" data-wikiid="epmo" data-p="epmo-ch">06 · Change Portfolio</button>
+  <button class="sub-btn" data-wikiid="epmo" data-p="epmo-ai">07 · AI-Augmented EPMO</button>
+  <button class="sub-btn" data-wikiid="epmo" data-p="epmo-mt">08 · Maturity & Performance</button>
+  <button class="sub-btn" data-wikiid="epmo" data-p="epmo-om">09 · Operating Model</button></div>
+  
+<div class="wpanel active" id="epmo-p-sp">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b1)">Blueprint 01</div>
+    <div class="s-title">Strategic Portfolio Blueprint</div>
+    <p class="s-intro">The EPMO's first and defining responsibility is translating Board strategy into a coherent, funded, and sequenced enterprise portfolio. <strong>Strategy that does not cascade into funded initiatives is decoration.</strong> The EPMO is the mechanism that closes the gap between strategic intent and execution reality — across every business unit, not just ICT.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b1)">The EPMO Distinction</div>
+    <div class="s-title">EPMO vs. ICT PMO vs. Domain PMO — what's different</div>
+    <table class="bp-table">
+      <thead><tr><th>Dimension</th><th>Domain PMO (e.g. ICT)</th><th>Enterprise PMO (EPMO)</th></tr></thead>
+      <tbody>
+        <tr><td><span class="td-h">Scope</span></td><td>Single function or department</td><td>All business units and functions — the full enterprise change agenda</td></tr>
+        <tr><td><span class="td-h">Authority</span></td><td>Project oversight and methodology</td><td>Strategic investment decisions — fund, defer, stop, or pivot at portfolio level</td></tr>
+        <tr><td><span class="td-h">Mandate</span></td><td>Delivery compliance and reporting</td><td>Benefits realisation and strategic outcome achievement</td></tr>
+        <tr><td><span class="td-h">Reports to</span></td><td>CIO or IT leadership</td><td>CEO, COO, or Board — direct executive reporting line</td></tr>
+        <tr><td><span class="td-h">Primary customer</span></td><td>IT leadership and project teams</td><td>Board, CEO, CFO, and all Business Unit leaders</td></tr>
+        <tr><td><span class="td-h">Success metric</span></td><td>On-time, on-budget delivery rate</td><td>Strategic alignment score, benefits realisation rate, portfolio ROI</td></tr>
+        <tr><td><span class="td-h">Governance forum</span></td><td>IT Steering Committee</td><td>Investment Committee / Portfolio Review Board — with C-suite authority</td></tr>
+        <tr><td><span class="td-h">Resource scope</span></td><td>IT headcount and budget</td><td>Enterprise capital allocation, cross-BU talent, and operating investment</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b1)">Strategy Cascade</div>
+    <div class="s-title">From Board strategy to funded initiative — the EPMO translation model</div>
+    <div class="flow">
+      <div class="fn"><div class="fn-icon">🏛️</div><div class="fn-label">Board Strategy</div><div class="fn-sub">3–5 year vision
+</div></div>
+<div class="wpanel" id="epmo-p-ig">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b2)">Blueprint 02</div>
+    <div class="s-title">Investment Governance Blueprint</div>
+    <p class="s-intro">Investment governance is the EPMO's highest-stakes function. Every funding decision has an opportunity cost. The governance model must make that cost visible, enforce decision discipline, and prevent the most common enterprise pathology: continuing to fund initiatives that no longer deliver strategic value because stopping them is politically uncomfortable.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b2)">Investment Committee Design</div>
+    <div class="s-title">The Investment Committee — structure, mandate, and operating model</div>
+    <div class="g2">
+      <div class="card" style="border-top:2px solid var(--b2)">
+        <div class="card-icon">🏛️</div>
+        <h3>Composition</h3>
+        <ul>
+          <li><strong>Chair:</strong> CEO or COO — the only person with cross-BU authority</li>
+          <li><strong>CFO:</strong> financial discipline and budget authority</li>
+          <li><strong>CIO:</strong> technology enablement and dependency visibility</li>
+          <li><strong>Business Unit Leaders:</strong> rotating representation by portfolio theme</li>
+          <li><strong>EPMO Director:</strong> portfolio intelligence, recommendations, secretariat</li>
+          <li><strong>Chief Risk Officer:</strong> for risk-significant decisions</li>
+          <li>Rule: no more than 8 members — large committees make no decisions</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b2)">
+        <div class="card-icon">⚖️</div>
+        <h3>Operating Principles</h3>
+        <ul>
+          <li><strong>Decisions only:</strong> no status updates in Investment Committee — that is what the dashboard is for</li>
+          <li><strong>EPMO recommends, Committee decides:</strong> EPMO never has final investment authority</li>
+          <li><strong>Decision log published within 24hrs:</strong> every decision, rationale, and dissent recorded</li>
+          <li><strong>No deferred decisions:</strong> "more information needed" is a decision — define the information required and the deadline</li>
+          <li><strong>Portfolio view always visible:</strong> no initiative decided in isolation — opportunity cost always shown</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="epmo-p-dp">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b3)">Blueprint 03</div>
+    <div class="s-title">Dependency & Sequencing Blueprint</div>
+    <p class="s-intro">At enterprise scale, the dependency surface is enormous — cross-BU, cross-technology, cross-vendor, and cross-regulatory. Unmanaged dependencies are the primary cause of enterprise programme failure. The EPMO owns the dependency view no domain PMO can see — the full picture across the change portfolio.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b3)">Dependency Taxonomy</div>
+    <div class="s-title">Five enterprise dependency types — and who resolves each</div>
+    <div class="g2">
+      <div class="card" style="border-left:3px solid var(--b3)">
+        <div class="card-icon">🔗</div>
+        <h3>Intra-Programme Dependencies</h3>
+        <p>Within a single programme — workstream A needs output from workstream B. Managed at programme level by the Programme Manager. Escalated to EPMO only if unresolved within one reporting cycle.</p>
+        <ul>
+          <li>Owner: Programme Manager</li>
+          <li>Forum: Programme board / weekly stand-up</li>
+          <li>EPMO role: visibility only unless escalated</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--b2)">
+        <div class="card-icon">🌉</div>
+        <h3>Cross-Programme Dependencies</h3>
+        <p>Programme A cannot proceed until Programme B delivers a capability. The most common source of enterprise delivery failure. Must be resolved at EPMO level — no domain PMO has the authority.</p>
+        <ul>
+          <li>Owner: EPMO with both Programme Sponsors</li>
+          <li>Forum: Monthly Investment Committee</li>
+          <li>EPMO role: map, negotiate, escalate, sequence</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--b1)">
+        <div class="card-icon">🏢</div>
+        <h3>Cross-BU Dependencies</h3>
+        <p>Initiative in BU A requires change from BU B — but BU B has no capacity or no incentive. The classic silo problem. Only resolvable at CEO level with EPMO framing the decision.</p>
+        <ul>
+          <li>Owner: CEO / COO with EPMO facilitation</li>
+          <li>Forum: Executive Leadership Team or Portfolio Review Board</li>
+          <li>EPMO role: make the dependency visible and the trade-off explicit</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--b5)">
+        <div class="card-icon">🏭</div>
+        <h3>Technology Platform Dependencies</h3>
+        <p>Multiple business initiatives dependent on a platform capability that doesn't exist yet. The ICT PMO owns delivery — the EPMO owns the prioritisation and sequencing decision.</p>
+        <ul>
+          <li>Owner: CIO + EPMO</li>
+          <li>Forum: Investment Committee (funding) + ICT Steering (delivery)</li>
+          <li>EPMO role: surface the dependency before business cases are approved</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--b4)">
+        <div class="card-icon">🤝</div>
+        <h3>External / Regulatory Dependencies</h3>
+        <p>Regulatory deadline, government policy, vendor contract, or market event that constrains programme sequencing. Cannot be controlled — only managed and planned around.</p>
+        <ul>
+          <li>Owner: EPMO + Legal/Compliance + relevant BU</li>
+          <li>Forum: Risk Committee + Investment Committee for material impact</li>
+          <li>EPMO role: maintain regulatory calendar, surface conflicts early</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--b6)">
+        <div class="card-icon">👥</div>
+        <h3>Resource / Capacity Dependencies</h3>
+        <p>Two initiatives competing for the same scarce resource — specialist talent, vendor capacity, or shared platform teams. The EPMO makes the sequencing trade-off explicit.</p>
+        <ul>
+          <li>Owner: EPMO + Resource Managers</li>
+          <li>Forum: Monthly IC for material conflicts</li>
+          <li>EPMO role: maintain enterprise capacity view that domain PMOs cannot see</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="epmo-p-fi">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b4)">Blueprint 04</div>
+    <div class="s-title">Enterprise Funding Blueprint</div>
+    <p class="s-intro">Enterprise funding governance is where the EPMO has the highest leverage and the most political resistance. Moving from annual project-budget approval to adaptive portfolio funding requires CFO partnership, investment discipline, and the courage to stop funding underperforming initiatives. The EPMO that can execute this shift becomes indispensable to the CEO and Board.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b4)">Funding Evolution</div>
+    <div class="s-title">From project funding to portfolio funding — the shift that matters most</div>
+    <div class="matrix">
+      <div class="mx-cell">
+        <h4 style="color:#ff5555">Traditional Project Funding</h4>
+        <ul>
+          <li>Annual budget cycle — decisions made 12+ months ahead of delivery</li>
+          <li>Funding tied to defined project scope — change is expensive and slow</li>
+          <li>Output accountability: "Did we deliver the scope and close the project?"</li>
+          <li>Teams disbanded at project close — capability and knowledge lost</li>
+          <li>Finance as gatekeeper — every change requires a new business case</li>
+          <li>Portfolio optimisation impossible — silos protect their budget</li>
+          <li>Zombie projects: funded initiatives that have lost strategic relevance but continue because stopping is hard</li>
+        </ul>
+      </div>
+      <div class="mx-cell">
+        <h4 style="color:var(--b4)">Portfolio / Adaptive Funding</h4>
+        <ul>
+          <li>Annual envelopes by strategic theme — quarterly reallocation based on performance</li>
+          <li>Funding follows value — high-performing initiatives get more; underperformers get less or stop</li>
+          <li>Outcome accountability: "Did we move the strategic measure?"</li>
+          <li>Long-lived teams and product capabilities — investment compounds over time</li>
+          <li>Finance as portfolio partner — participatory reallocation at quarterly reviews</li>
+          <li>Cross-BU optimisation: the EPMO can redirect funding where it creates most value</li>
+          <li>Explicit kill criteria: initiatives stopped when they no longer justify investment</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="epmo-p-br">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b5)">Blueprint 05</div>
+    <div class="s-title">Enterprise Benefits Realisation Blueprint</div>
+    <p class="s-intro">Enterprise-scale benefits realisation is the EPMO's most visible accountability to the Board and CFO. The question is not "did we deliver the project?" but "did the enterprise receive the value it invested in?" These are rarely the same answer — and the gap between them is where the EPMO proves its worth.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b5)">Enterprise Benefit Architecture</div>
+    <div class="s-title">Three measurement levels — project, programme, and portfolio</div>
+    <div class="g3">
+      <div class="card" style="border-top:2px solid var(--b3)">
+        <div class="card-icon">📋</div>
+        <h3>Project-Level Benefits</h3>
+        <p>Specific, measurable outputs and direct outcomes from individual projects. Tracked by Project/Programme Manager with EPMO oversight.</p>
+        <ul>
+          <li>Defined in business case: baseline + target + measurement method</li>
+          <li>Benefit owner: business unit leader — not the PM</li>
+          <li>Tracking: post-implementation review at 3, 6, 12 months</li>
+          <li>Reported to: Programme Board / ICT Steering</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b2)">
+        <div class="card-icon">🗂️</div>
+        <h3>Programme-Level Benefits</h3>
+        <p>Aggregated outcomes across related projects. Often greater than sum of parts — or reveals interdependencies that prevent realisation.</p>
+        <ul>
+          <li>Benefits map: which projects contribute to which programme outcomes</li>
+          <li>Dependency tracking: benefit A cannot be realised until project B delivers</li>
+          <li>Change readiness: adoption determines realisation — track both</li>
+          <li>Reported to: Investment Committee monthly</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b1)">
+        <div class="card-icon">💼</div>
+        <h3>Portfolio-Level Benefits</h3>
+        <p>Strategic outcome achievement across the full enterprise change portfolio. The Board-level view. Links investment to strategic performance.</p>
+        <ul>
+          <li>Strategic theme benefit performance: are we moving the measures that matter?</li>
+          <li>Portfolio ROI: aggregate benefit value vs. total portfolio investment</li>
+          <li>Strategic alignment score: % of portfolio delivering against strategic priorities</li>
+          <li>Reported to: Board quarterly</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="epmo-p-ch">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b6)">Blueprint 06</div>
+    <div class="s-title">Change Portfolio Blueprint</div>
+    <p class="s-intro">The enterprise change portfolio is the full inventory of transformation initiatives underway or planned across all business units. The EPMO's unique value is seeing and governing the change portfolio as a whole — managing cumulative change load, change sequencing, and the organisation's finite capacity to absorb transformation.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b6)">Change Capacity</div>
+    <div class="s-title">The constraint nobody budgets for — organisational change absorption</div>
+    <div class="callout" style="background:var(--b6d);border:1px solid rgba(147,51,234,0.2)">
+      <div class="callout-head" style="color:var(--b6)">📌 The Change Saturation Problem</div>
+      <p style="color:rgba(220,180,255,0.85)">Every organisation has a finite capacity to absorb change. When multiple major transformations run simultaneously — ERP replacement, operating model redesign, AI implementation, regulatory programme — the cumulative impact on staff overwhelms the organisation's ability to adopt any of them. Benefits are not realised because people cannot change fast enough. The EPMO's role is to make this invisible constraint visible to the Board and sequence the change portfolio within organisational capacity — not just within financial and resource capacity.</p>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <h3>Measuring Change Load</h3>
+        <ul>
+          <li><strong>Change impact assessment:</strong> for every initiative, rate the breadth (how many people affected) and depth (how much their work changes) of impact</li>
+          <li><strong>Business unit change heat map:</strong> which BUs are experiencing the highest cumulative change load? This is where realisation risk concentrates.</li>
+          <li><strong>Change readiness score:</strong> quarterly survey — how ready are affected teams to adopt the changes in flight?</li>
+          <li><strong>Adoption rate tracking:</strong> post go-live, are people actually using the new capability? Low adoption = benefit not realised regardless of delivery success</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Managing Change Sequencing</h3>
+        <ul>
+          <li><strong>Change moratorium periods:</strong> protect high-pressure business periods (financial year-end, peak trading) from major go-lives</li>
+          <li><strong>Sequencing by BU load:</strong> don't deploy three major changes to the same business unit in the same quarter — even if each is individually ready</li>
+          <li><strong>Change champion network:</strong> embedded in each BU — the EPMO's intelligence on change readiness and adoption</li>
+          <li><strong>Benefits delay tracking:</strong> if adoption is low, benefits are delayed — report this to Investment Committee, not just to the change team</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="epmo-p-ai">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b7)">Blueprint 07</div>
+    <div class="s-title">AI-Augmented EPMO Blueprint</div>
+    <p class="s-intro">AI is transforming what an EPMO can see and how fast it can act. Predictive analytics, agentic portfolio monitoring, and AI-assisted scenario planning are moving the EPMO from a reporting function to a real-time portfolio intelligence engine. The constraint is not the AI — it is the quality of the data the EPMO feeds it.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b7)">AI Capability Map</div>
+    <div class="s-title">What AI does in the EPMO — and what remains irreducibly human</div>
+    <div class="g2">
+      <div class="card" style="border-top:2px solid var(--b7)">
+        <div class="card-icon">🤖</div>
+        <h3>AI Does (2026)</h3>
+        <ul>
+          <li><strong>Predictive benefit forecasting:</strong> AI models trained on historical programme data predict benefit realisation probability at current trajectory — before the IC meeting</li>
+          <li><strong>Portfolio scenario modelling:</strong> instant modelling of "what if we stop Programme X and redirect the capital?" — across dependencies and capacity</li>
+          <li><strong>Risk signal detection:</strong> AI monitors project data streams for early warning signals — budget variance trend, velocity drop, sentiment decline in communications</li>
+          <li><strong>Automated portfolio reporting:</strong> AI aggregates data from all domain PMOs, generates draft portfolio health report — EPMO reviews and contextualises</li>
+          <li><strong>Dependency conflict detection:</strong> AI maps cross-programme dependencies and flags conflicts before they become blockers</li>
+          <li><strong>Business case analysis:</strong> AI scores incoming business cases against strategic alignment criteria and flags missing elements</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b1)">
+        <div class="card-icon">👤</div>
+        <h3>Human Does (Always)</h3>
+        <ul>
+          <li><strong>Investment decisions:</strong> AI provides the intelligence; humans make the call — fund, stop, or pivot</li>
+          <li><strong>Political navigation:</strong> cross-BU conflict, sponsor relationships, and the organisational dynamics that determine whether decisions stick</li>
+          <li><strong>Ethical judgment:</strong> AI governance, responsible AI investment decisions, and the human accountability that regulation requires</li>
+          <li><strong>Board relationship:</strong> the EPMO Director's credibility with the Board is irreducibly personal — no AI substitutes for trusted judgment</li>
+          <li><strong>Difficult conversations:</strong> stopping a programme, challenging a senior sponsor's business case, escalating to CEO level</li>
+          <li><strong>Contextual interpretation:</strong> AI flags the signal; the EPMO Director understands the organisational context that determines what it means</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="epmo-p-mt">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--b8)">Blueprint 08</div>
+    <div class="s-title">EPMO Maturity & Performance Blueprint</div>
+    <p class="s-intro">The EPMO must demonstrate its own value as rigorously as it demands benefit cases from the programmes it governs. Most EPMOs measure themselves on activity — number of governance forums, volume of reports produced, PMO headcount. The ones that earn sustained investment measure themselves on outcomes.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b8)">Maturity Model</div>
+    <div class="s-title">Four-stage EPMO maturity — where you are and what the next move is</div>
+    <table class="bp-table">
+      <thead><tr><th>Stage</th><th>Characteristics</th><th>Primary value</th><th>Limiting factor</th><th>Next move</th></tr></thead>
+      <tbody>
+        <tr><td><span class="td-h">Stage 1 · Establishing</span>Project registry and reporting</td><td>Centralised project list. Basic status reporting. No portfolio prioritisation.</td><td>Visibility — executives can see what is running</td><td>No authority. No standardisation. No benefit tracking.</td><td>Standardise business case template and stage gate process. Establish Investment Committee.</td></tr>
+        <tr><td><span class="td-h">Stage 2 · Governing</span>Standards and governance in place</td><td>Stage gates enforced. Business case standard applied. Portfolio reporting consistent.</td><td>Governance — investment decisions made through a defined process</td><td>Governance seen as overhead. Benefits not tracked. No cross-BU sequencing.</td><td>Mandate benefit ownership. Build benefits tracking. Introduce quarterly portfolio review.</td></tr>
+        <tr><td><span class="td-h">Stage 3 · Optimising</span>Portfolio intelligence and rebalancing</td><td>Quarterly portfolio rebalancing. Benefits tracking live. Cross-BU dependency management. Stops happen.</td><td>Optimisation — portfolio allocation shifts to highest-value initiatives</td><td>Data quality limits AI. Change capacity not managed. Board engagement inconsistent.</td><td>Invest in data integration. Build change capacity model. Establish Board-level portfolio reporting.</td></tr>
+        <tr><td><span class="td-h">Stage 4 · Strategic</span>Strategy execution engine</td><td>Real-time portfolio intelligence. Predictive analytics. Board confidence in EPMO. EPMO as CEO strategic partner.</td><td>Strategic leverage — EPMO accelerates strategy execution measurably</td><td>Sustaining executive sponsorship. Keeping pace with strategic change rate.</td><td>Continuous improvement. EPMO capability investment as a portfolio item. External benchmarking.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--b8)">EPMO KPIs</div>
+    <div class="s-title">Three KPIs that matter — and the ones that don't</div>
+    <div class="g3">
+      <div class="card" style="border-top:2px solid var(--b1)">
+        <div class="card-icon">🎯</div>
+        <h3>Strategic Alignment Score</h3>
+        <p>What % of the active portfolio investment is aligned to current strategic themes? Target: &gt;85%.</p>
+        <ul>
+          <li>Measured: at each quarterly portfolio review</li>
+          <li>Rising score = EPMO is successfully directing investment to strategic priorities</li>
+          <li>Falling score = zombie projects consuming budget or strategy has shifted without portfolio rebalancing</li>
+          <li>Board language: "85 cents of every dollar invested is directly serving our strategic priorities"</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b5)">
+        <div class="card-icon">💰</div>
+        <h3>Benefits Realisation Rate</h3>
+        <p>% of committed benefits actually delivered, measured at 12 months post go-live. Target: &gt;75%.</p>
+        <ul>
+          <li>Measured: quarterly against post-implementation reviews</li>
+          <li>High rate = business cases are credible and benefit ownership is genuine</li>
+          <li>Low rate = business cases are optimistic and benefit owners are not accountable</li>
+          <li>Board language: "We delivered 78% of the value we committed to this year's portfolio"</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--b4)">
+        <div class="card-icon">📊</div>
+        <h3>Portfolio Health Index</h3>
+        <p>Composite score: % of portfolio on track (schedule, budget, benefit), at risk, or in distress. Target: &gt;70% on track.</p>
+        <ul>
+          <li>Measured: monthly from portfolio dashboard</li>
+          <li>High health = portfolio is well-governed and realistically planned</li>
+          <li>Low health = either governance is weak or the portfolio is over-committed</li>
+          <li>Board language: "72% of our change portfolio is on track. Here are the 5 programmes requiring Board attention."</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="epmo-p-om">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:#22d3ee">Blueprint 09</div>
+    <div class="s-title">EPMO Operating Model</div>
+    <p class="s-intro">The EPMO Operating Model defines how the EPMO functions as an organisation — its internal structure, roles, workflows, decision cadences, and interfaces with domain PMOs and the C-suite. Most EPMOs have a governance framework but not an operating model. The difference: governance says what decisions get made. The operating model says how the EPMO actually runs day to day to make them.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:#22d3ee">The Operating Model at a Glance</div>
+    <div class="s-title">Six components of the EPMO operating model</div>
+    <div class="g3">
+      <div class="card" style="border-top:2px solid #22d3ee">
+        <div class="card-icon">🎯</div>
+        <h3>1 · Mandate & Positioning</h3>
+        <p>The EPMO's defined purpose, authority level, reporting line, and scope boundary. Without a clear mandate, every conversation about authority becomes a negotiation.</p>
+      </div>
+      <div class="card" style="border-top:2px solid #22d3ee">
+        <div class="card-icon">👥</div>
+        <h3>2 · Structure & Roles</h3>
+        <p>The EPMO team composition, role accountabilities, and the interface model with domain PMOs. Who does what — and what the EPMO explicitly does not do.</p>
+      </div>
+      <div class="card" style="border-top:2px solid #22d3ee">
+        <div class="card-icon">🔄</div>
+        <h3>3 · Operating Rhythm</h3>
+        <p>The cadence of forums, reviews, and decisions that keeps the EPMO functioning. What meets, when, who attends, and what decision or output it produces.</p>
+      </div>
+      <div class="card" style="border-top:2px solid #22d3ee">
+        <div class="card-icon">🌐</div>
+        <h3>4 · Domain PMO Interface</h3>
+        <p>The handshake between the EPMO and domain PMOs (ICT, Finance, Operations). What flows up, what stays down, and how conflicts are resolved.</p>
+      </div>
+      <div class="card" style="border-top:2px solid #22d3ee">
+        <div class="card-icon">🤖</div>
+        <h3>5 · AI-Augmented Operations</h3>
+        <p>How the EPMO uses AI to move from reporting function to real-time portfolio intelligence engine — and the data prerequisites that make it work.</p>
+      </div>
+      <div class="card" style="border-top:2px solid #22d3ee">
+        <div class="card-icon">📊</div>
+        <h3>6 · EPMO Performance</h3>
+        <p>How the EPMO measures its own performance — the three KPIs that matter, the ones that don't, and the quarterly value demonstration cadence.</p>
+      
+</div></div>
+</div>
+
+<!-- ICT TOM -->
+<div class="wiki-panel" id="wiki-tom" data-wiki="tom">
+  <div class="subnav"><button class="sub-btn active" data-wikiid="tom" data-p="tom-ov">Overview</button>
+  <button class="sub-btn" data-wikiid="tom" data-p="tom-st">Structure</button>
+  <button class="sub-btn" data-wikiid="tom" data-p="tom-tm">Team Model</button>
+  <button class="sub-btn" data-wikiid="tom" data-p="tom-gv">Governance</button>
+  <button class="sub-btn" data-wikiid="tom" data-p="tom-pp">People & Skills</button>
+  <button class="sub-btn" data-wikiid="tom" data-p="tom-td">Technology & Data</button>
+  <button class="sub-btn" data-wikiid="tom" data-p="tom-rm">Metrics</button>
+  <button class="sub-btn" data-wikiid="tom" data-p="tom-rd">Roadmap</button></div>
+  
+<div class="wpanel active" id="tom-p-ov">
+<div class="wiki-body">
+
+  <div class="section">
+    <div class="s-label" style="color:var(--teal)">The TOM at a Glance</div>
+    <div class="s-title">What this TOM does — and what it doesn't</div>
+    <p class="s-intro">This TOM is an <strong>evolution design</strong>, not a transformation from scratch. Your ICT group is already on a product/squad model — the foundation is right. The target state matures that foundation into five dimensions: an AI-native team topology, a genuine platform engineering capability, federated AI governance, outcome-based performance, and a talent model built for the AI era.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--teal)">Current → Target</div>
+    <div class="s-title">The six evolution shifts</div>
+    <div class="matrix">
+      <div class="mx-cell">
+        <h4 style="color:var(--mid)">Current State (Product/Squad Foundation)</h4>
+        <ul>
+          <li>Squad model in place — teams aligned to products</li>
+          <li>Platform exists but treated as infrastructure ops, not a product</li>
+          <li>AI tools adopted individually — no enterprise standard or governance</li>
+          <li>Governance: IT Steering Committee, project-era cadences</li>
+          <li>Metrics: delivery-focused — velocity, on-time, budget</li>
+          <li>Skills: engineers as code writers — not curators/orchestrators</li>
+        </ul>
+      </div>
+      <div class="mx-cell">
+        <h4 style="color:var(--teal)">Target State (AI-Native ICT TOM)</h4>
+        <ul>
+          <li>Squad model matured — smaller AI-augmented teams, cleaner domain boundaries</li>
+          <li>Platform team reoriented as internal product — golden paths, developer NPS</li>
+          <li>AI Centre of Excellence: hub for strategy, enablement, governance — not gatekeeper</li>
+          <li>Governance: product and outcome cadences — OKRs, quarterly portfolio review</li>
+          <li>Metrics: four-layer stack — DORA + SPACE + Flow + Business outcomes</li>
+          <li>Skills: engineers as curators and orchestrators — AI as standard team member</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="tom-p-st">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--blue)">Structure</div>
+    <div class="s-title">ICT organisational structure — the six functional areas</div>
+    <p class="s-intro">For a 200–500 person ICT group on the product/squad model, the target structure organises around six functional areas — each with a distinct mandate, accountability, and way of working. The critical design decision is <strong>how these areas interact</strong>, not just what they do.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--blue)">CIO Office</div>
+    <div class="s-title">The CIO's direct mandate — strategy, not operations</div>
+    <div class="g2">
+      <div class="card" style="border-top:2px solid var(--teal)">
+        <div class="card-icon">🎯</div>
+        <h3>What the CIO Office owns</h3>
+        <ul>
+          <li><strong>ICT Strategy:</strong> 3-year technology roadmap aligned to enterprise strategy</li>
+          <li><strong>AI Centre of Excellence:</strong> hub for AI strategy, governance, enablement — federated model</li>
+          <li><strong>Enterprise Architecture:</strong> technology standards, architecture runway, ADRs</li>
+          <li><strong>ICT PMO:</strong> portfolio governance, benefits realisation, investment decisions</li>
+          <li><strong>Vendor & Partner:</strong> strategic vendor relationships, major contract governance</li>
+          <li><strong>Security & Risk:</strong> CISO function, risk posture, compliance — embedded in delivery</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--rose)">
+        <div class="card-icon">🚫</div>
+        <h3>What the CIO Office does NOT own</h3>
+        <ul>
+          <li>Day-to-day project delivery decisions — owned by product squads</li>
+          <li>Technology stack decisions within approved guardrails — owned by architects and squads</li>
+          <li>Sprint planning and team ceremonies — owned by delivery teams</li>
+          <li>Platform feature delivery — owned by Platform team</li>
+          <li>Individual AI tool adoption decisions — owned within approved tooling list</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="tom-p-tm">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--violet)">Team Model</div>
+    <div class="s-title">AI-era Team Topologies for a 200–500 person ICT group</div>
+    <p class="s-intro">The product/squad model you already have is the right foundation. The AI-era evolution is not a structural overhaul — it is a <strong>calibration</strong>: smaller stream-aligned teams, a platform team repositioned as the highest-ROI investment, and a permanent AI enabling function.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--violet)">Team Size Evolution</div>
+    <div class="s-title">What AI does to team size and composition</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-val" style="color:var(--violet)">7→9</div><div class="stat-lbl">Pre-AI stream-aligned team size (Team Topologies original)
+</div></div>
+<div class="wpanel" id="tom-p-gv">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--amber)">Governance</div>
+    <div class="s-title">ICT governance in the TOM — enabling speed, not creating ceremony</div>
+    <p class="s-intro"><cite index="43-1">A technology operating model defines how technology work is executed across the enterprise. CIOs must design flexible, AI-native technology operating models that explicitly account for both human and AI contributions to work — embedding automation into workflows, accelerating decision making through distributed yet governed decision rights.</cite> Governance must enable speed. Every governance touchpoint that doesn't prevent a risk or enable a decision is waste.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--amber)">Decision Rights</div>
+    <div class="s-title">Who decides what — the ICT decision authority matrix</div>
+    <table class="bp-table">
+      <thead><tr><th>Decision</th><th>Who decides</th><th>Mechanism</th><th>Cadence</th></tr></thead>
+      <tbody>
+        <tr><td><span class="td-h">ICT Strategy & Investment</span>Portfolio priorities, investment allocation</td><td>CIO + Portfolio Review Board</td><td>Quarterly portfolio review — decisions only</td><td>Quarterly</td></tr>
+        <tr><td><span class="td-h">Architecture Standards</span>Technology stack, patterns, ADRs</td><td>Enterprise Architect + Tech Leads</td><td>Weekly Architecture Sync + ADR process</td><td>Weekly / per decision</td></tr>
+        <tr><td><span class="td-h">AI Tool Adoption</span>Which AI tools enter the approved stack</td><td>CIO + CISO + AI CoE</td><td>AI tool evaluation gate — security + ethics + ROI</td><td>Per tool (fast-track for Tier 4)</td></tr>
+        <tr><td><span class="td-h">Product Roadmap</span>What the squad builds next</td><td>Product Manager + Squad</td><td>PI Planning / sprint planning — autonomous</td><td>Per PI / per sprint</td></tr>
+        <tr><td><span class="td-h">Platform Capability Prioritisation</span>Platform team roadmap</td><td>Platform PM + squad community NPS</td><td>Quarterly platform roadmap review with consumer squads</td><td>Quarterly</td></tr>
+        <tr><td><span class="td-h">Vendor & Contract</span>Major vendor relationships</td><td>CIO + Procurement + Legal</td><td>CIO sign-off above threshold — delegated below</td><td>Per contract cycle</td></tr>
+        <tr><td><span class="td-h">Security Exceptions</span>Deviations from security standards</td><td>CISO + Risk Committee</td><td>Formal exception process — time-limited, reviewed</td><td>Per exception</td></tr>
+        <tr><td><span class="td-h">Scope Injection</span>Unplanned work into a PI</span></td><td>ICT PMO + CIO (above threshold)</td><td>Fast-track intake — explicit trade-off decision</td><td>On-demand</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--amber)">Governance Cadence</div>
+    <div class="s-title">The ICT governance calendar — what meets, when, and why</div>
+    <div class="g2">
+      <div class="card">
+        <h3>Keep Synchronous</h3>
+        <ul>
+          <li><strong>Quarterly Portfolio Review (2hrs):</strong> investment decisions, portfolio rebalancing</li>
+          <li><strong>PI Planning (5hrs compressed):</strong> cross-squad alignment, dependency negotiation</li>
+          <li><strong>Monthly IC / ICT Steering (90min):</strong> escalations, decisions only</li>
+          <li><strong>Weekly Architecture Sync (60min):</strong> emergent design, ADR decisions</li>
+          <li><strong>Mid-PI Review (60min):</strong> benefits vs. OKR progress — decisions, not status</li>
+          <li><strong>I&A (45min):</strong> PI retrospective — actions with owners</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Move Asynchronous</h3>
+        <ul>
+          <li>Weekly status updates → automated dashboard with AI-generated narrative</li>
+          <li>Risk updates → Monday AM risk digest (written, SADL-owned)</li>
+          <li>Benefit tracking → live portfolio benefit dashboard</li>
+          <li>Decision documentation → async record published within 24hrs</li>
+          <li>Platform updates → async release notes + demo recording</li>
+          <li>Retro inputs → structured survey before live I&A</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="tom-p-pp">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--rose)">People & Skills</div>
+    <div class="s-title">The ICT workforce model for the AI era</div>
+    <p class="s-intro"><cite index="45-1">The engineer of 2026 will spend less time writing foundational code and more time orchestrating a dynamic portfolio of AI agents, reusable components and external services. The core skill becomes systems thinking, not just syntax.</cite> This shift is structural — it requires deliberate investment in reskilling, role redefinition, and a talent model that attracts and retains people who thrive in human-AI collaboration.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--rose)">Role Evolution</div>
+    <div class="s-title">How every ICT role shifts in the target state</div>
+    <table class="bp-table">
+      <thead><tr><th>Role family</th><th>Current focus</th><th>Target state focus</th><th>Critical new capability</th></tr></thead>
+      <tbody>
+        <tr><td><span class="td-h">Software Engineers</span></td><td>Writing code to implement features</td><td>Orchestrating AI agents + curating AI-generated code + designing system architecture</td><td>AI orchestration, systems thinking, output validation, prompt engineering</td></tr>
+        <tr><td><span class="td-h">Product Managers</span></td><td>Feature definition and delivery tracking</td><td>Outcome hypothesis, AI product ethics, benefit ownership, AI use case validation</td><td>OKR ownership, AI business case construction, ethics judgment</td></tr>
+        <tr><td><span class="td-h">Architects</span></td><td>Technical design and standards governance</td><td>Domain decomposition, AI architecture, Conway's Law diagnosis, agentic system design</td><td>DDD, event-driven architecture, AI system architecture, A2A/MCP protocols</td></tr>
+        <tr><td><span class="td-h">QA / Testers</span></td><td>Manual and automated test execution</td><td>AI quality stewardship — evaluation sets, hallucination detection, bias auditing</td><td>AI evaluation design, probabilistic output testing, continuous monitoring</td></tr>
+        <tr><td><span class="td-h">Data Engineers</span></td><td>Pipeline development and data warehousing</td><td>Data product ownership, AI-ready data architecture, feature store management</td><td>Data mesh, MLOps, vector databases, data quality for AI</td></tr>
+        <tr><td><span class="td-h">Platform Engineers</span></td><td>Infrastructure operations and DevOps tooling</td><td>IDP product ownership — golden paths, developer experience, AI platform capabilities</td><td>Developer NPS, internal product management, AI integration in platform</td></tr>
+        <tr><td><span class="td-h">ICT Leaders (SADLs, EMs)</span></td><td>Delivery management and team coordination</td><td>Outcome leadership, AI governance, human-AI workflow design, strategic thinking</td><td>AI operating model design, portfolio thinking, business acumen</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--rose)">Skills Framework</div>
+    <div class="s-title">The ICT AI literacy standard — five levels, mandatory across the group</div>
+    <div class="g3">
+      <div class="card" style="border-left:3px solid var(--teal)">
+        <div class="card-icon">1️⃣</div>
+        <h3>Level 1 · Aware (All ICT staff)</h3>
+        <p>Understanding what AI is, what it can and cannot do, and the ethical principles that govern its use. EU AI Act Article 4 mandates this for all staff.</p>
+        <ul>
+          <li>Completed by: all ICT staff within first 90 days</li>
+          <li>Format: 4-hour self-paced module, in-flow</li>
+          <li>Assessed: knowledge check — not just completion</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--blue)">
+        <div class="card-icon">2️⃣</div>
+        <h3>Level 2 · User (All engineers)</h3>
+        <p>Proficient use of approved AI tools in daily workflow. Prompt engineering, output validation, and knowing when not to trust AI output.</p>
+        <ul>
+          <li>Completed by: all engineers within 6 months</li>
+          <li>Format: workshop + 30-day on-the-job practice</li>
+          <li>Assessed: practical demonstration in squad context</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--violet)">
+        <div class="card-icon">3️⃣</div>
+        <h3>Level 3 · Builder (Senior engineers)</h3>
+        <p>Building AI-augmented workflows, integrating AI APIs, designing human-AI handoffs, and evaluating AI output quality at system level.</p>
+        <ul>
+          <li>Completed by: senior engineers and tech leads within 12 months</li>
+          <li>Format: project-based learning + mentoring from AI CoE</li>
+          <li>Assessed: AI-augmented feature delivered with documented handoffs</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--amber)">
+        <div class="card-icon">4️⃣</div>
+        <h3>Level 4 · Orchestrator (AI Champions)</h3>
+        <p>Designing and governing multi-agent AI systems, managing AI quality at scale, and leading AI adoption within a squad or domain.</p>
+        <ul>
+          <li>Completed by: AI Champions — 1 per squad minimum</li>
+          <li>Format: AI CoE program + external certification</li>
+          <li>Role: peer advocate, adoption barrier surfacer, AI CoE liaison</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:3px solid var(--rose)">
+        <div class="card-icon">5️⃣</div>
+        <h3>Level 5 · Strategist (Leaders)</h3>
+        <p>AI strategy development, investment governance, ethics accountability, and translating AI capability into business value language for the C-suite and Board.</p>
+        <ul>
+          <li>Completed by: SADL, EM, Head of Platform, AI CoE leads</li>
+          <li>Format: executive AI program + CIO mentoring</li>
+          <li>Assessed: AI business case construction and Board-level briefing</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="tom-p-td">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--green)">Technology & Data</div>
+    <div class="s-title">The ICT technology stack in the target operating model</div>
+    <p class="s-intro"><cite index="42-1">The future of IT centres on continuous digital transformation, supported by explicit technology roadmapping rather than opportunistic project funding. McKinsey's 2025 technology strategy work points to platform engineering and AI as twin drivers of this shift — changing the unit of planning from "projects delivered" to "capabilities sustained."</cite></p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--green)">Architecture Principles</div>
+    <div class="s-title">The technology guardrails squads operate within</div>
+    <div class="g2">
+      <div class="card" style="border-top:2px solid var(--green)">
+        <div class="card-icon">🏗️</div>
+        <h3>Architecture Standards (Non-Negotiable)</h3>
+        <ul>
+          <li><strong>API-first:</strong> all capabilities exposed via documented APIs — no direct database access across domain boundaries</li>
+          <li><strong>Event-driven by default</strong> for async cross-domain communication — reduces coupling structurally</li>
+          <li><strong>Domain ownership:</strong> each squad owns its domain's data — no shared databases across bounded contexts</li>
+          <li><strong>Security by design:</strong> zero-trust architecture, secrets management, no credentials in code</li>
+          <li><strong>Observable by default:</strong> structured logging, distributed tracing, and alerting — built in, not added later</li>
+          <li><strong>Cloud-native:</strong> containerised workloads on Kubernetes — IDP golden paths handle the complexity</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2px solid var(--green)">
+        <div class="card-icon">🤝</div>
+        <h3>Architecture Autonomy (Squad Decides)</h3>
+        <ul>
+          <li>Language and framework choice within approved list</li>
+          <li>Internal service decomposition within their bounded context</li>
+          <li>Database technology within approved list for their use case</li>
+          <li>Sprint and iteration structure — team decides what works for them</li>
+          <li>AI tool selection within approved tooling list</li>
+          <li>Test strategy and tooling within quality standards</li>
+        </ul>
+      
+</div></div>
+<div class="wpanel" id="tom-p-rm">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--cyan)">Metrics</div>
+    <div class="s-title">How the TOM is measured — four layers for four audiences</div>
+    <p class="s-intro">The metrics model is the accountability backbone of the TOM. Every layer of the organisation has a distinct measurement lens. The CIO sees portfolio outcomes. Delivery leads see flow and DORA. Platform team sees developer NPS. Executives see business value. One dashboard, four views.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--cyan)">Layer 1 — Business Outcomes (CIO / Board)</div>
+    <div class="s-title">What the investment delivers</div>
+    <div class="stats">
+      <div class="stat"><div class="stat-val" style="color:var(--teal)">OKR</div><div class="stat-lbl">Portfolio OKR achievement rate — quarterly
+</div></div>
+<div class="wpanel" id="tom-p-rd">
+<div class="wiki-body">
+  <div class="section">
+    <div class="s-label" style="color:var(--lime)">Implementation Roadmap</div>
+    <div class="s-title">From current product/squad model to AI-native TOM — three horizons</div>
+    <p class="s-intro">The TOM is not implemented in a single transformation. It evolves across three horizons — each building on the last. The sequence matters: data and platform foundation before AI, domain boundaries before AI tool adoption, governance before scale.</p>
+  </div>
+
+  <div class="section">
+    <div class="s-label" style="color:var(--lime)">Horizon 1 — Foundation (0–6 months)</div>
+    <div class="s-title">Stabilise the platform, establish AI governance, fix domain boundaries</div>
+    <div class="checklist">
+      <div class="cl-item"><input type="checkbox" id="tom-r1"><label for="tom-r1"><strong>AI inventory and shadow AI audit</strong>What AI tools are already in use across the ICT group — sanctioned and unsanctioned? Map it before governing it. Shadow AI channelled with a governed approved list, not banned.</label></div>
+      <div class="cl-item"><input type="checkbox" id="tom-r2"><label for="tom-r2"><strong>Platform team reorientation</strong>Appoint a Platform Product Manager. Define developer NPS as the primary success metric. Run the first developer experience survey. Publish the platform roadmap.</label></div>
+      <div class="cl-item"><input type="checkbox" id="tom-r3"><label for="tom-r3"><strong>Domain boundary audit</strong>Map which squads have persistent cross-squad dependencies every PI. These are the bounded context misalignments. Prioritise two boundary corrections in Horizon 1 — these have the highest delivery ROI.</label></div>
+      <div class="cl-item"><input type="checkbox" id="tom-r4"><label for="tom-r4"><strong>AI CoE established</strong>Named lead. Cross-functional membership (IT, Legal, Compliance). Approved AI tooling list published. Ethics framework documented. Not a governance gate — a hub.</label></div>
+      <div class="cl-item"><input type="checkbox" id="tom-r5"><label for="tom-r5"><strong>DORA baseline established</strong>Measure all five DORA metrics at current state. Segment by squad. You cannot improve what you haven't measured. This becomes the before picture for the TOM business case.</label></div>
+      <div class="cl-item"><input type="checkbox" id="tom-r6"><label for="tom-r6"><strong>AI literacy Level 1 rolled out</strong>All ICT staff complete the awareness module within 90 days. EU AI Act Article 4 compliance. Documented completion is evidence for regulatory purposes.</label>
+</div></div>
+</div>
+
+</div><!-- /content-frame -->
+
+<script>
+function showHome(e) {
+  e.preventDefault();
+  document.querySelectorAll('.wiki-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.topnav-link').forEach(l => l.classList.remove('active'));
+  document.getElementById('wiki-home').classList.add('active');
+  document.querySelector('.topnav-link[data-wiki="home"]').classList.add('active');
+  window.scrollTo({top:0});
+}
+
+function showWiki(e, wikiId) {
+  e.preventDefault();
+  document.querySelectorAll('.wiki-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.topnav-link').forEach(l => l.classList.remove('active'));
+  document.getElementById('wiki-' + wikiId).classList.add('active');
+  const link = document.querySelector('.topnav-link[data-wiki="' + wikiId + '"]');
+  if (link) link.classList.add('active');
+  window.scrollTo({top:0});
+}
+
+// Sub-nav (within each wiki)
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('.sub-btn');
+  if (!btn) return;
+  const wikiPanel = btn.closest('.wiki-panel');
+  if (!wikiPanel) return;
+  const wikiId = wikiPanel.id.replace('wiki-', '');
+  const targetP = btn.dataset.p;
+
+  // Update sub-nav active
+  wikiPanel.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // Show correct wpanel
+  wikiPanel.querySelectorAll('.wpanel').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById(targetP);
+  if (target) target.classList.add('active');
+  window.scrollTo({top:56});
+});
+
+// Checkbox persistence
+document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+  if (!cb.id) return;
+  if (localStorage.getItem('apex-' + cb.id) === 'true') cb.checked = true;
+  cb.addEventListener('change', () => localStorage.setItem('apex-' + cb.id, cb.checked));
+});
+</script>
+</body>
+</html>
